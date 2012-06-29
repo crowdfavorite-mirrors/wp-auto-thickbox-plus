@@ -3,7 +3,7 @@
 Plugin Name: Auto ThickBox Plus
 Plugin URI: http://attosoft.info/en/blog/auto-thickbox-plus/
 Description: Overlays linked image, inline, iFrame and AJAX content on the page in simple & fast effects. (improved version of Auto Thickbox plugin)
-Version: 1.5
+Version: 1.6
 Author: attosoft
 Author URI: http://attosoft.info/en/
 License: GPL 2.0
@@ -33,7 +33,7 @@ Domain Path: /languages
 */
 
 define('AUTO_THICKBOX_PLUS', 'Auto ThickBox Plus');
-define('AUTO_THICKBOX_PLUS_VERSION', '1.5');
+define('AUTO_THICKBOX_PLUS_VERSION', '1.6');
 
 /**
  * auto_thickbox
@@ -438,9 +438,9 @@ SCRIPT;
 	function add_auto_thickbox_links($links, $file) {
 		if ( $file == plugin_basename(__FILE__) ) {
 			$links[] = '<a href="plugin-install.php?tab=plugin-information&plugin=auto-thickbox-plus&TB_iframe" class="thickbox" title="' . AUTO_THICKBOX_PLUS . '">' . $this->texts['details'] . '</a>';
-			$links[] = '<a href="http://wordpress.org/tags/auto-thickbox-plus" target="_blank">' . __('Support', 'auto-thickbox') . '</a>';
+			$links[] = '<a href="http://wordpress.org/support/plugin/auto-thickbox-plus" target="_blank">' . __('Support', 'auto-thickbox') . '</a>';
 			$links[] = '<a href="' . __('http://attosoft.info/en/', 'auto-thickbox') . 'contact/" target="_blank">' . $this->texts['contact'] . '</a>';
-			$links[] = '<a href="' . __('http://attosoft.info/en/', 'auto-thickbox') . 'donate/" target="_blank">' . __('Donate', 'auto-thickbox') . '</a>';
+			$links[] = '<a href="' . __('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=D2DLJNSUFBU4U', 'auto-thickbox') . '" target="_blank">' . __('Donate', 'auto-thickbox') . '</a>';
 		}
 		return $links;
 	}
@@ -564,7 +564,7 @@ SCRIPT;
 			'txt_shadow_title' => 'none',
 			'txt_shadow_cap' => 'none',
 			'ref_title' => "'link-title','link-name','blank','img-title','img-alt','img-desc','img-name'",
-			'ref_cap' => "'link-title','link-name','blank','img-title','img-alt','img-desc','img-name','gallery-cap'",
+			'ref_cap' => "'link-title','link-name','blank','img-title','img-alt','img-desc','img-name','img-cap'",
 			'post_id' => '0',
 			'img_prev' => $this->plugins_url('images/tb-prev.png', __FILE__),
 			'img_next' => $this->plugins_url('images/tb-next.png', __FILE__),
@@ -644,6 +644,12 @@ SCRIPT;
 			$updateOption = true;
 		}
 
+		// XXX: transition code for v1.6 or earlier
+		if (strpos($this->options['ref_cap'], 'gallery-cap') !== false) {
+			$this->options['ref_cap'] = str_replace('gallery-cap', 'img-cap', $this->options['ref_cap']);
+			$updateOption = true;
+		}
+
 		if ($this->is_default_options('post_id')) {
 			$args = array(
 				'post_status' => 'draft',
@@ -690,9 +696,11 @@ SCRIPT;
 		$this->texts['sel_color'] = $this->gettext('Select a Color', array('Select a color'));
 		$this->texts['open'] = ucfirst($this->gettext('Open', array('open')));
 		$this->texts['details'] = $this->gettext('Show Details', array('Details'));
-		$this->texts['contact'] = ucfirst($this->gettext('Contact Me', array('contact')));
+		$this->texts['contact'] = ucfirst($this->gettext('Contact', array('contact')));
 		$this->texts['link'] = ucfirst($this->gettext('Link', array('Links')));
 		$this->texts['insert'] = $this->gettext('Insert Image', array('Insert an Image', 'Insert'));
+		$this->texts['about'] = $this->gettext('About');
+		$this->texts['visit'] = $this->gettext('Visit plugin site', array('Visit plugin homepage'));
 	}
 
 	/*

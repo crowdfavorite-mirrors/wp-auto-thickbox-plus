@@ -84,7 +84,9 @@ function tb_caption(elem, refs) {
 			case "blank": return "";
 			case "img-title": caption = jQuery(elem).children("img").attr("title"); break;
 			case "img-alt": caption = jQuery(elem).children("img").attr("alt"); break;
-			case "gallery-cap": caption = jQuery(elem).parent().nextAll(".gallery-caption").text(); break;
+			case "img-cap": caption = jQuery(elem).parent().is('dt.gallery-icon') // for WordPress
+				? jQuery(elem).parent().nextAll(".wp-caption-text").text().replace(/^\s+|\s+$/g, '') // trim()
+				: jQuery(elem).nextAll(".wp-caption-text").text(); break;
 			case "img-desc": caption = jQuery(elem).children("img").attr("longdesc"); break;
 			case "img-name": caption = jQuery(elem).children("img").attr("name"); break;
 		}
@@ -222,6 +224,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 				if (!imageGroup || !caption)
 					jQuery("#TB_window").addClass("TB_singleLine");
 				var size = tb_getSize(jQuery("#TB_Image"), "margin");
+				if (size[1] < imageHeight) size[1] += imageHeight; // workaround for "img { height: auto; }" style
 				TB_WIDTH = size[0];
 				TB_HEIGHT = size[1] + tb_getSize(jQuery("#TB_closeWindow"), "margin")[1];
 
@@ -292,7 +295,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 						}
 					}
 					if (id && title && handler) {
-						var height = tb_getSize(jQuery("#TB_Image"), "margin")[1];
+						var height = size[1];
 						jQuery("#TB_window").append("<div id='TB_ImageClick'><a href='' id='"+id+"' title='"+title+"' style='height:"+height+"px;'><span></span></a></div>");
 						jQuery("#"+id).click(handler);
 					}
@@ -331,7 +334,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 						}
 					}
 					if ((id && title && handler) || (id2 && title2 && handler2)) {
-						var height = tb_getSize(jQuery("#TB_Image"), "margin")[1];
+						var height = size[1];
 						var link = link2 = "";
 						if (id && title && handler) link = "<a href='' id='"+id+"' class='TB_ImageLeft' title='"+title+"' style='height:"+height+"px;'></a>";
 						if (id2 && title2 && handler2) link2 = "<a href='' id='"+id2+"' class='TB_ImageRight' title='"+title2+"' style='height:"+height+"px;'></a>";
@@ -630,18 +633,6 @@ function tb_effectView(type, show) {
 		else
 			jQuery("#TB_ImageClick").hide();
 	}
-
-	if (window.chrome && (type == "zoom" || type == "fade")) {
-		if (show) {
-			jQuery("#TB_iframeContent").attr("scrolling", "auto");
-			jQuery("body", jQuery("#TB_iframeContent").contents()).css("overflow", "auto");
-			jQuery("#TB_ajaxContent").css("overflow", "");
-		} else {
-			jQuery("#TB_iframeContent").attr("scrolling", "no");
-			jQuery("body", jQuery("#TB_iframeContent").contents()).css("overflow", "hidden");
-			jQuery("#TB_ajaxContent").css("overflow", "hidden");
-		}
-	}
 }
 
 function tb_showIframe(){
@@ -692,6 +683,20 @@ function tb_position() {
 	jQuery("#TB_window").css({marginLeft: marginLeft + 'px', width: TB_WIDTH + 'px'});
 	if ( ! isIE6 ) { // take away IE6
 		jQuery("#TB_window").css({marginTop: marginTop + 'px'});
+	}
+
+	// workaround for "body { position: relative; }" style
+	if (jQuery("body").css("position") == "relative") {
+		if (!isIE6) {
+			var top = parseInt((jQuery(window).innerHeight() - height) / 2, 10);
+			if (jQuery("#TB_window").css("position") == "absolute")
+				top += jQuery(document).scrollTop();
+			jQuery("#TB_window").css({marginTop: '', top: top + 'px'});
+		} else {
+			marginLeft = parseInt((jQuery(window).innerWidth() - width) / 2, 10) + jQuery(document).scrollLeft();
+			marginTop = parseInt((jQuery(window).innerHeight() - height) / 2, 10) + jQuery(document).scrollTop();
+			jQuery("#TB_window").css({marginLeft: marginLeft + 'px', marginTop: marginTop + 'px', top: '0', left: '0'});
+		}
 	}
 }
 

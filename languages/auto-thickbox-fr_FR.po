@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Auto ThickBox Plus 1.5\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tags/auto-thickbox-plus\n"
 "POT-Creation-Date: 2012-05-23 22:32+0900\n"
-"PO-Revision-Date: 2012-05-24 14:48+0900\n"
+"PO-Revision-Date: 2012-06-04 12:24+0100\n"
 "Last-Translator: Prévots <jbprevots@hotmail.fr>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -32,8 +32,8 @@ msgid "Overlays linked image, inline, iFrame and AJAX content on the page in sim
 msgstr ""
 
 #: auto-thickbox-options.php:79
-msgid "Default Display Style"
-msgstr "Style de l'affichage par défaut"
+msgid "Display Style"
+msgstr "Style de l'affichage"
 
 #: auto-thickbox-options.php:82
 msgid "Single Image"
@@ -49,7 +49,7 @@ msgstr "Lien automatique à ThickBox"
 
 #: auto-thickbox-options.php:98
 msgid "Text links to images"
-msgstr ""
+msgstr "Textes liés aux images"
 
 #: auto-thickbox-options.php:100
 msgid "Links with target attribute"
@@ -69,37 +69,27 @@ msgstr "Utiliser les fichiers thickbox.js/css de WordPress (certaines options se
 
 #: auto-thickbox-options.php:91
 msgid "Set a different gallery-id for each WordPress Gallery"
-msgstr ""
+msgstr "Mettre une identification unique pour chaque gallerie photos WordPress"
 
 #: auto-thickbox-options.php:104
 msgid "No ThickBox"
 msgstr "Désactiver ThickBox"
 
 #: auto-thickbox-options.php:107
-msgid "* Input class attribute values separated by space"
-msgstr "*Séparer les class par un espace"
+msgid "* Input class attribute values separated by spaces"
+msgstr "*Séparer les class par des espaces"
 
 #: auto-thickbox.php:400
 msgid "Support"
 msgstr "Support"
 
 #: auto-thickbox.php:597
-msgid "Contact Me"
-msgstr "Me contacter"
+msgid "Contact"
+msgstr "Contacter"
 
 #: auto-thickbox.php:402
 msgid "Donate"
 msgstr "Faire un don"
-
-#: auto-thickbox.php:8
-#: auto-thickbox.php:401
-#: auto-thickbox.php:402
-msgid "http://attosoft.info/en/"
-msgstr ""
-
-#: auto-thickbox.php:4
-msgid "http://attosoft.info/en/blog/auto-thickbox-plus/"
-msgstr ""
 
 #: auto-thickbox-options.php:143
 msgid "Mouse Click"
@@ -120,7 +110,7 @@ msgstr "Molette de la souris"
 #: auto-thickbox-options.php:243
 #: auto-thickbox-options.php:259
 msgid "Space"
-msgstr ""
+msgstr "Espace"
 
 #: auto-thickbox-options.php:204
 #: auto-thickbox-options.php:214
@@ -131,41 +121,41 @@ msgstr ""
 #: auto-thickbox-options.php:487
 #: auto-thickbox-options.php:531
 msgid "Window"
-msgstr ""
+msgstr "Fenêtre"
 
 #: auto-thickbox-options.php:203
 msgid "Drag &amp; Drop"
-msgstr ""
+msgstr "Glisser-déposer"
 
 #: auto-thickbox-options.php:207
 #: auto-thickbox-options.php:217
 msgid "Move"
-msgstr ""
+msgstr "Déplacer"
 
 #: auto-thickbox-options.php:209
 #: auto-thickbox-options.php:219
 msgid "Resize"
-msgstr ""
+msgstr "Redimensionner"
 
 #: auto-thickbox-options.php:486
 msgid "Border Radius"
-msgstr ""
+msgstr "Border radius"
 
 #: auto-thickbox-options.php:500
 msgid "Opacity"
-msgstr ""
+msgstr "Transparence"
 
 #: auto-thickbox-options.php:530
 msgid "Box Shadow"
-msgstr ""
+msgstr "Box shadow"
 
 #: auto-thickbox-options.php:539
 msgid "Text Shadow"
-msgstr ""
+msgstr "Text shadow"
 
 #: auto-thickbox-options.php:663
 msgid "Button"
-msgstr ""
+msgstr "Bouton"
 
 #: auto-thickbox-options.php:313
 msgid "https://developer.mozilla.org/en/CSS/position"
@@ -213,15 +203,15 @@ msgstr ""
 
 #: auto-thickbox-options.php:19
 msgid "Effect"
-msgstr ""
+msgstr "Effets"
 
 #: auto-thickbox-options.php:19
 msgid "beta"
-msgstr ""
+msgstr "beta"
 
 #: auto-thickbox.php:595
 msgid "Open"
-msgstr ""
+msgstr "Ouverture"
 
 #: auto-thickbox-options.php:700
 #: auto-thickbox-options.php:713
@@ -229,7 +219,7 @@ msgstr ""
 #: auto-thickbox-options.php:739
 #: auto-thickbox-options.php:754
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 #: auto-thickbox-options.php:702
 #: auto-thickbox-options.php:715
@@ -237,7 +227,7 @@ msgstr ""
 #: auto-thickbox-options.php:741
 #: auto-thickbox-options.php:756
 msgid "Slide"
-msgstr ""
+msgstr "Slide"
 
 #: auto-thickbox-options.php:704
 #: auto-thickbox-options.php:717
@@ -245,36 +235,36 @@ msgstr ""
 #: auto-thickbox-options.php:743
 #: auto-thickbox-options.php:758
 msgid "Fade"
-msgstr ""
+msgstr "Fondu"
 
 #: auto-thickbox-options.php:723
 msgid "Transition"
-msgstr ""
+msgstr "Transition"
 
 #: auto-thickbox-options.php:747
 #: auto-thickbox-options.php:762
 msgid "Hide initially"
-msgstr ""
+msgstr "Cacher au début"
 
 #: auto-thickbox-options.php:766
 msgid "Speed"
-msgstr ""
+msgstr "Vitesse"
 
 #: auto-thickbox-options.php:769
 msgid "Fast"
-msgstr ""
+msgstr "Rapide"
 
 #: auto-thickbox-options.php:771
 msgid "Normal"
-msgstr ""
+msgstr "Normale"
 
 #: auto-thickbox-options.php:773
 msgid "Slow"
-msgstr ""
+msgstr "Lente"
 
 #: auto-thickbox-options.php:319
 msgid "Absolute"
-msgstr ""
+msgstr "Absolue"
 
 #: auto-thickbox-options.php:399
 #: auto-thickbox-options.php:411
@@ -284,12 +274,12 @@ msgstr ""
 #: auto-thickbox-options.php:505
 #: auto-thickbox-options.php:520
 msgid "Transparent"
-msgstr ""
+msgstr "Transparent"
 
 #: auto-thickbox-options.php:507
 #: auto-thickbox-options.php:522
 msgid "Opaque"
-msgstr ""
+msgstr "Opaque"
 
 #: auto-thickbox-options.php:621
 #: auto-thickbox-options.php:630
@@ -299,9 +289,33 @@ msgstr ""
 #: auto-thickbox-options.php:666
 #: auto-thickbox-options.php:675
 msgid "Select a File"
-msgstr ""
+msgstr "Choisir une image"
 
 #: auto-thickbox-options.php:452
 msgid "Margin"
+msgstr "Marge"
+
+#: auto-thickbox-options.php:824
+msgid "Put rating stars or vote compatibility (works/broken)"
+msgstr "Noter ou signaler les compatibilités (fonctionne/cassé)"
+
+#: auto-thickbox-options.php:825
+msgid "View support forum or post a new topic"
+msgstr "Aller sur le forum de support ou créer un nouveau sujet"
+
+#: auto-thickbox-options.php:826
+msgid "Translate the plugin into your language"
+msgstr "Traduire le plugin dans votre langue"
+
+#: auto-thickbox-options.php:827
+msgid "Donate to support plugin development"
+msgstr "Faire un don pour soutenir le développement du plugin"
+
+#: auto-thickbox-options.php:828
+msgid "Contact me if you have any feedback"
+msgstr "Me contacter si vous avez des retours"
+
+#: auto-thickbox-options.php:906
+msgid "Settings reset."
 msgstr ""
 

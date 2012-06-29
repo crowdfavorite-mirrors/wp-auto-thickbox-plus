@@ -5,6 +5,10 @@
  * attosoft <contact@attosoft.info>, 2012.
  */
 
+
+.form-table { font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, sans-serif; }
+ul.about { font-family: Georgia, "Times New Roman", "Bitstream Charter", Times, serif; }
+
 label.item, input.button { margin-right:3px; }
 
 .form-table th { width: 180px; font-weight: bold; }
@@ -43,6 +47,19 @@ ol.sortable li {
 	-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px;
 }
 ol.sortable .ui-sortable-helper { list-style-type: none; }
+
+ul.about li {
+    margin: 0 0 15px 10px;
+    padding-left: 70px;
+    font-size: 14px;
+    line-height: 48px;
+}
+li.wp { background: url(images/wp.png) no-repeat; }
+li.star { background: url(images/star.png) no-repeat; }
+li.forum { background: url(images/forum.png) no-repeat; }
+li.l10n { background: url(images/l10n.png) no-repeat; }
+li.donate { background: url(images/donate.png) no-repeat; }
+li.contact { background: url(images/contact.png) no-repeat; }
 
 /* @see also jquery.ui.css in Smoothness theme */
 .ui-disabled a { cursor: default !important; }
