@@ -23,28 +23,28 @@ msgid "Overlays linked image, inline, iFrame and AJAX content on the page in sim
 msgstr "Geeft afbeeldingen weer in een pop-up, inline, iFrame en AJAX inhoud op de pagina met snelle & eenvoudige effecten. (verbeterde versie van Auto Thickbox plugin)"
 
 #: auto-thickbox-options.php:69
-msgid "Default Display Style"
-msgstr "Standaard weergave stijl"
+msgid "Display Style"
+msgstr "Weergave stijl"
 
 #: auto-thickbox-options.php:72
-msgid "Single Image (explicitly specify a@rel attribute as needed)"
-msgstr "Enkele afbeelding (specificeer zelf a@rel attribuut indien nodig)"
+msgid "Single Image"
+msgstr "Enkele afbeelding"
 
 #: auto-thickbox-options.php:74
-msgid "Gallery Images (automatically set a@rel attribute in 'gallery-id' format)"
-msgstr "Gallerij afbeeldingen (automatisch a@rel attribuut in 'gallery-id' formaat)"
+msgid "Gallery Images"
+msgstr "Gallerij afbeeldingen"
 
-#: auto-thickbox-options.php:78
-msgid "ThickBox on Text Links"
-msgstr "ThickBox en tekst links"
+#: auto-thickbox-options.php:86
+msgid "Auto ThickBox"
+msgstr ""
 
-#: auto-thickbox-options.php:81
-msgid "Auto (automatically set a@class=&quot;thickbox&quot;)"
-msgstr "Automatisch (automatisch a@class=&quot;thickbox&quot;)"
+#: auto-thickbox-options.php:89
+msgid "Text links to images"
+msgstr ""
 
-#: auto-thickbox-options.php:83
-msgid "Manual (explicitly specify a@class=&quot;thickbox&quot; as needed)"
-msgstr "Handmatig (Specificeer zelf a@class=&quot;thickbox&quot; indien nodig)"
+#: auto-thickbox-options.php:91
+msgid "Links with target attribute"
+msgstr ""
 
 #: auto-thickbox-options.php:87
 msgid "Auto Resize"
@@ -58,30 +58,29 @@ msgstr "ThickBox bronnen"
 msgid "Use WordPress built-in thickbox.js/css (some extra features will be disabled)"
 msgstr "Gebruik de in WordPress ingebouwde thickbox.js/css (sommige extra onderdelen worden uitgeschakeld)"
 
+#: auto-thickbox-options.php:82
+msgid "Set a different gallery-id for each WordPress Gallery"
+msgstr ""
+
+#: auto-thickbox-options.php:95
+msgid "No ThickBox"
+msgstr ""
+
+#: auto-thickbox-options.php:98
+msgid "* Input class attribute values separated by spaces"
+msgstr ""
+
 #: auto-thickbox.php:353
 msgid "Support"
 msgstr "Ondersteuning"
 
 #: auto-thickbox.php:536
-msgid "Contact Me"
+msgid "Contact"
 msgstr "Neem contact op (Engels)"
 
 #: auto-thickbox.php:355
 msgid "Donate"
 msgstr "Doneer"
-
-#: auto-thickbox.php:8
-msgid "http://attosoft.info/en/"
-msgstr "http://attosoft.info/en/"
-
-#: auto-thickbox.php:354
-#: auto-thickbox.php:355
-msgid "http://attosoft.info/blog/en/"
-msgstr "http://attosoft.info/blog/en/"
-
-#: auto-thickbox.php:4
-msgid "http://attosoft.info/blog/en/auto-thickbox-plus/"
-msgstr "http://attosoft.info/blog/en/auto-thickbox-plus/"
 
 #: auto-thickbox-options.php:110
 msgid "Mouse Click"
@@ -227,6 +226,11 @@ msgstr "Vervagen"
 msgid "Transition"
 msgstr "Overgang"
 
+#: auto-thickbox-options.php:785
+#: auto-thickbox-options.php:800
+msgid "Hide initially"
+msgstr ""
+
 #: auto-thickbox-options.php:689
 msgid "Speed"
 msgstr "Snelheid"
@@ -275,4 +279,28 @@ msgstr "Bestand kiezen"
 #: auto-thickbox-options.php:415
 msgid "Margin"
 msgstr "Marge"
+
+#: auto-thickbox-options.php:824
+msgid "Put rating stars or vote compatibility (works/broken)"
+msgstr ""
+
+#: auto-thickbox-options.php:825
+msgid "View support forum or post a new topic"
+msgstr ""
+
+#: auto-thickbox-options.php:826
+msgid "Translate the plugin into your language"
+msgstr ""
+
+#: auto-thickbox-options.php:827
+msgid "Donate to support plugin development"
+msgstr ""
+
+#: auto-thickbox-options.php:828
+msgid "Contact me if you have any feedback"
+msgstr ""
+
+#: auto-thickbox-options.php:906
+msgid "Settings reset."
+msgstr ""
 

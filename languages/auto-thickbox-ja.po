@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Auto ThickBox Plus 1.5\n"
+"Project-Id-Version: Auto ThickBox Plus 1.6\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tags/auto-thickbox-plus\n"
-"POT-Creation-Date: 2012-05-23 22:32+0900\n"
-"PO-Revision-Date: 2012-05-23 23:07+0900\n"
+"POT-Creation-Date: 2012-06-06 13:24+0900\n"
+"PO-Revision-Date: 2012-06-06 13:31+0900\n"
 "Last-Translator: attosoft <contact@attosoft.info>\n"
 "Language-Team: attosoft <http://attosoft.info/en/>\n"
 "MIME-Version: 1.0\n"
@@ -22,8 +22,8 @@ msgid "Overlays linked image, inline, iFrame and AJAX content on the page in sim
 msgstr "リンク先の画像やインライン, iFrame, AJAX コンテンツをシンプルかつ軽快な効果でポップアップ表示する (Auto Thickbox プラグインの改良版)"
 
 #: auto-thickbox-options.php:79
-msgid "Default Display Style"
-msgstr "デフォルト表示スタイル"
+msgid "Display Style"
+msgstr "表示スタイル"
 
 #: auto-thickbox-options.php:82
 msgid "Single Image"
@@ -66,7 +66,7 @@ msgid "No ThickBox"
 msgstr "ThickBox 無効化"
 
 #: auto-thickbox-options.php:107
-msgid "* Input class attribute values separated by space"
+msgid "* Input class attribute values separated by spaces"
 msgstr "※ 半角スペース区切りの class 属性値を入力する"
 
 #: auto-thickbox.php:400
@@ -74,16 +74,16 @@ msgid "Support"
 msgstr "サポート"
 
 #: auto-thickbox.php:597
-msgid "Contact Me"
-msgstr "問い合わせ"
+msgid "Contact"
+msgstr "コンタクト"
 
 #: auto-thickbox.php:402
 msgid "Donate"
 msgstr "寄付"
 
 #: auto-thickbox.php:8
-#: auto-thickbox.php:401
-#: auto-thickbox.php:402
+#: auto-thickbox.php:442
+#: auto-thickbox-options.php:828
 msgid "http://attosoft.info/en/"
 msgstr "http://attosoft.info/"
 
@@ -294,4 +294,37 @@ msgstr "ファイルを選択"
 #: auto-thickbox-options.php:452
 msgid "Margin"
 msgstr "余白"
+
+#: auto-thickbox.php:696
+msgid "About"
+msgstr "プラグインについて"
+
+#: auto-thickbox-options.php:824
+msgid "Put rating stars or vote compatibility (works/broken)"
+msgstr "プラグインの評価および互換性 (動作する/しない) の報告"
+
+#: auto-thickbox-options.php:825
+msgid "View support forum or post a new topic"
+msgstr "サポートフォーラムの閲覧または新規トピックの投稿"
+
+#: auto-thickbox-options.php:826
+msgid "Translate the plugin into your language"
+msgstr "ほかの言語にプラグインを翻訳する"
+
+#: auto-thickbox.php:443
+#: auto-thickbox-options.php:827
+msgid "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=D2DLJNSUFBU4U"
+msgstr "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CYWQWH7TN9THS"
+
+#: auto-thickbox-options.php:827
+msgid "Donate to support plugin development"
+msgstr "プラグイン開発を支援する (寄付)"
+
+#: auto-thickbox-options.php:828
+msgid "Contact me if you have any feedback"
+msgstr "お問い合わせ (ご意見・ご感想など)"
+
+#: auto-thickbox-options.php:906
+msgid "Settings reset."
+msgstr "設定をリセットしました。"
 

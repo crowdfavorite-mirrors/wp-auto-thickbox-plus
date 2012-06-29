@@ -6,7 +6,7 @@
  */
 
 jQuery(function($) {
-	postboxes.add_postbox_toggles("auto-thickbox-options");
+	postboxes.add_postbox_toggles(pagenow);
 
 	$(".colorpicker").each(function() {
 		var text = $(this).prevAll(".colortext");

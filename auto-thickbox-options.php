@@ -11,12 +11,13 @@ class auto_thickbox_options {
 	// Auto ThickBox Plus Options
 	function register_options_page() {
 		add_options_page($this->texts['options'], AUTO_THICKBOX_PLUS, 'manage_options', $this->base_dir, array(&$this, 'options_page'));
-		add_meta_box( 'general-box', __('General'), array(&$this, 'general_metabox'), 'auto-thickbox-options', 'normal' );
-		add_meta_box( 'action-box', $this->texts['action'], array(&$this, 'action_metabox'), 'auto-thickbox-options', 'normal' );
-		add_meta_box( 'view-box', $this->texts['view'], array(&$this, 'view_metabox'), 'auto-thickbox-options', 'normal' );
-		add_meta_box( 'text-box', __('Text'), array(&$this, 'text_metabox'), 'auto-thickbox-options', 'normal' );
-		add_meta_box( 'image-box', $this->texts['image'], array(&$this, 'image_metabox'), 'auto-thickbox-options', 'normal' );
-		add_meta_box( 'effect-box', __('Effect', 'auto-thickbox') . ' (' . __('beta', 'auto-thickbox') . ')', array(&$this, 'effect_metabox'), 'auto-thickbox-options', 'normal' );
+		add_meta_box( 'general-box', __('General'), array(&$this, 'general_metabox'), 'settings_page_auto-thickbox-plus', 'normal' );
+		add_meta_box( 'action-box', $this->texts['action'], array(&$this, 'action_metabox'), 'settings_page_auto-thickbox-plus', 'normal' );
+		add_meta_box( 'view-box', $this->texts['view'], array(&$this, 'view_metabox'), 'settings_page_auto-thickbox-plus', 'normal' );
+		add_meta_box( 'text-box', __('Text'), array(&$this, 'text_metabox'), 'settings_page_auto-thickbox-plus', 'normal' );
+		add_meta_box( 'image-box', $this->texts['image'], array(&$this, 'image_metabox'), 'settings_page_auto-thickbox-plus', 'normal' );
+		add_meta_box( 'effect-box', __('Effect', 'auto-thickbox') . ' (' . __('beta', 'auto-thickbox') . ')', array(&$this, 'effect_metabox'), 'settings_page_auto-thickbox-plus', 'normal' );
+		add_meta_box( 'about-box', $this->texts['about'], array(&$this, 'about_metabox'), 'settings_page_auto-thickbox-plus', 'normal' );
 		if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'post_id=' . $this->options['post_id']) !== false) {
 			add_filter('gettext', array(&$this, 'replace_insert_button'), 20, 3);
 			register_post_type('auto-thickbox-plus', array('label' => AUTO_THICKBOX_PLUS));
@@ -49,7 +50,7 @@ class auto_thickbox_options {
 		<?php
 				wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false );
 				wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false );
-				do_meta_boxes( 'auto-thickbox-options', 'normal', null );
+				do_meta_boxes( 'settings_page_auto-thickbox-plus', 'normal', null );
 		?>
 		</div>
 		<p class="submit">
@@ -66,7 +67,7 @@ class auto_thickbox_options {
 ?>
 <table class="form-table">
 	<tr>
-		<th scope="row"><?php _e('Default Display Style', 'auto-thickbox'); ?></th>
+		<th scope="row"><?php _e('Display Style', 'auto-thickbox'); ?></th>
 		<td>
 			<label><input type="radio" name="auto-thickbox-plus[thickbox_style]" value="single"<?php $this->checked($this->options['thickbox_style'], 'single'); ?> />
 			<?php _e('Single Image', 'auto-thickbox'); ?> (<code>&lt;a href="image">&lt;img />&lt;/a></code>)</label><br />
@@ -94,7 +95,7 @@ class auto_thickbox_options {
 		<th scope="row"><?php _e('No ThickBox', 'auto-thickbox'); ?></th>
 		<td>
 			<label><input type="text" name="auto-thickbox-plus[no_thickbox]" value="<?php $this->esc_attr($this->options['no_thickbox']); ?>" class="regular-text" /><br />
-			<?php _e('* Input class attribute values separated by space', 'auto-thickbox'); ?> (<code>&lt;a class="nothickbox"></code>)</label>
+			<?php _e('* Input class attribute values separated by spaces', 'auto-thickbox'); ?> (<code>&lt;a class="nothickbox"></code>)</label>
 		</td>
 	</tr>
 	<tr>
@@ -626,7 +627,7 @@ class auto_thickbox_options {
 				case "blank": echo "<li class='ui-state-default' id='blank'>" . __('Blank') . "</li>"; break;
 				case "img-title": echo "<li class='ui-state-default' id='img-title'>{$this->texts['image']} - " . __('Title') . " (<code>img@title</code>)</li>"; break;
 				case "img-alt": echo "<li class='ui-state-default' id='img-alt'>{$this->texts['image']} - " . __('Alternate Text') . " (<code>img@alt</code>)</li>"; break;
-				case "gallery-cap": echo "<li class='ui-state-default' id='gallery-cap'>" . __('Gallery') . " - " . __('Caption') . " (<code>dd.gallery-caption</code>)</li>"; break;
+				case "img-cap": echo "<li class='ui-state-default' id='img-cap'>{$this->texts['image']} - " . __('Caption') . " (<code>@class='wp-caption-text'</code>)</li>"; break;
 				case "img-desc": echo "<li class='ui-state-default' id='img-desc'>{$this->texts['image']} - " . __('Description') . " (<code>img@longdesc</code>)</li>"; break;
 				case "img-name": echo "<li class='ui-state-default' id='img-name'>{$this->texts['image']} - " . __('Name') . " (<code>img@name</code>)</li>"; break;
 			}
@@ -816,6 +817,19 @@ class auto_thickbox_options {
 <?php
 	}
 
+	function about_metabox() {
+?>
+<ul class="about">
+	<li class="wp"><a href="http://wordpress.org/extend/plugins/auto-thickbox-plus/" target="_blank"><?php echo $this->texts['visit']; ?></a></li>
+	<li class="star"><a href="http://wordpress.org/extend/plugins/auto-thickbox-plus/" target="_blank"><?php _e('Put rating stars or vote compatibility (works/broken)', 'auto-thickbox'); ?></a></li>
+	<li class="forum"><a href="http://wordpress.org/support/plugin/auto-thickbox-plus" target="_blank"><?php _e('View support forum or post a new topic', 'auto-thickbox'); ?></a></li>
+	<li class="l10n"><a href="http://wordpress.org/extend/plugins/auto-thickbox-plus/other_notes/#Localization" target="_blank"><?php _e('Translate the plugin into your language', 'auto-thickbox'); ?></a></li>
+	<li class="donate"><a href="<?php _e('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=D2DLJNSUFBU4U', 'auto-thickbox'); ?>" target="_blank"><?php _e('Donate to support plugin development', 'auto-thickbox'); ?></a></li>
+	<li class="contact"><a href="<?php _e('http://attosoft.info/en/', 'auto-thickbox'); ?>contact/" target="_blank"><?php _e('Contact me if you have any feedback', 'auto-thickbox'); ?></a></li>
+</ul>
+<?php
+	}
+
 	/**
 	 * XXX: disabled() function is defined from WordPress 3.0
 	 * @see /wp-includes/general-template.php
@@ -888,7 +902,10 @@ class auto_thickbox_options {
 		'key_end_home_end');
 
 	function options_callback($options) {
-		if (isset($_POST['reset'])) return $this->options_def;
+		if (isset($_POST['reset'])) {
+			add_settings_error('general', 'settings_updated', __('Settings reset.', 'auto-thickbox'), 'updated');
+			return $this->options_def;
+		}
 		foreach ($this->checkboxes_on as $checkbox) {
 			if (!isset($options[$checkbox]))
 				$options[$checkbox] = 'off';
