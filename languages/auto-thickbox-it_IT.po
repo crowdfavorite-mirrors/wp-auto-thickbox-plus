@@ -1,0 +1,541 @@
+# LANGUAGE (LOCALE) translation for Auto ThickBox Plus
+# Copyright (C) YEAR AUTHOR <EMAIL@ADDRESS or URL>
+# This file is distributed under the same license as the Auto ThickBox Plus package.
+# AUTHOR <EMAIL@ADDRESS or URL>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Auto ThickBox Plus in italiano\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-01 08:36+0100\n"
+"PO-Revision-Date: 2012-08-01 14:05+0100\n"
+"Last-Translator: Gianni Diurno (aka gidibao) <gidibao[at]gmail[dot]com>\n"
+"Language-Team: Gianni Diurno | gidibao.net & charmingpress.com\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: ITALY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: auto-thickbox-options.php:14
+msgid "General"
+msgstr "Generale"
+
+#: auto-thickbox-options.php:17
+msgid "Text"
+msgstr "Testo"
+
+#: auto-thickbox-options.php:19
+msgid "Effect"
+msgstr "Effetti"
+
+#: auto-thickbox-options.php:19
+#: auto-thickbox-options.php:201
+msgid "beta"
+msgstr "beta"
+
+#: auto-thickbox-options.php:20
+msgid "About"
+msgstr "Info"
+
+#: auto-thickbox-options.php:57
+msgid "Save Changes"
+msgstr "Salva le modifiche"
+
+#: auto-thickbox-options.php:58
+msgid "Reset"
+msgstr "Ripristina"
+
+#: auto-thickbox-options.php:70
+msgid "Display Style"
+msgstr "Stile box"
+
+#: auto-thickbox-options.php:73
+msgid "Single Image"
+msgstr "immagine singola"
+
+#: auto-thickbox-options.php:75
+msgid "Gallery Images"
+msgstr "immagini galleria"
+
+#: auto-thickbox-options.php:82
+msgid "Set a different gallery-id for each WordPress Gallery"
+msgstr "imposta una differente id-galleria per ogni Galleria WordPress"
+
+#: auto-thickbox-options.php:86
+msgid "Auto ThickBox"
+msgstr "Auto ThickBox"
+
+#: auto-thickbox-options.php:89
+msgid "WordPress Filters"
+msgstr "filtri WordPress"
+
+#: auto-thickbox-options.php:91
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: auto-thickbox-options.php:91
+msgid "Whole Page"
+msgstr "intera pagina"
+
+#: auto-thickbox-options.php:93
+msgid "Disabled"
+msgstr "non attivo"
+
+#: auto-thickbox-options.php:100
+msgid "Text links to images"
+msgstr "link di testo alle immagini"
+
+#: auto-thickbox-options.php:102
+msgid "Links with target attribute"
+msgstr "link con attributo target"
+
+#: auto-thickbox-options.php:106
+msgid "No ThickBox"
+msgstr "Nessuna ThickBox"
+
+#: auto-thickbox-options.php:109
+msgid "* Input class attribute values separated by spaces"
+msgstr "* inserire valori attributo classe separando con degli spazi"
+
+#: auto-thickbox-options.php:113
+msgid "Auto Resize"
+msgstr "Ridimensionamento auto"
+
+#: auto-thickbox-options.php:116
+msgid "Enabled"
+msgstr "attivato"
+
+#: auto-thickbox-options.php:120
+msgid "ThickBox Resources"
+msgstr "Risorse ThickBox"
+
+#: auto-thickbox-options.php:123
+msgid "Header"
+msgstr "Header"
+
+#: auto-thickbox-options.php:125
+msgid "Footer"
+msgstr "Footer"
+
+#: auto-thickbox-options.php:132
+msgid "Use WordPress built-in thickbox.js/css (some extra features will be disabled)"
+msgstr "usa thickbox.js/css nativo di WordPress (alcune funzioni extra saranno disattivate)"
+
+#: auto-thickbox-options.php:145
+msgid "Mouse Click"
+msgstr "Click mouse"
+
+#: auto-thickbox-options.php:159
+#: auto-thickbox.php:155
+msgid "Download"
+msgstr ""
+
+#: auto-thickbox-options.php:161
+msgid "Expand"
+msgstr ""
+
+#: auto-thickbox-options.php:161
+msgid "Shrink"
+msgstr ""
+
+#: auto-thickbox-options.php:167
+msgid "Loop"
+msgstr "Loop"
+
+#: auto-thickbox-options.php:172
+msgid "Clickable Range"
+msgstr "Area cliccabile"
+
+#: auto-thickbox-options.php:186
+#: auto-thickbox-options.php:447
+#: auto-thickbox-options.php:544
+msgid "Background"
+msgstr "Sfondo"
+
+#: auto-thickbox-options.php:195
+msgid "Mouse Wheel"
+msgstr "Rotella mouse"
+
+#: auto-thickbox-options.php:195
+msgid "Scroll"
+msgstr "Scorrimanto"
+
+#: auto-thickbox-options.php:201
+msgid "Scale"
+msgstr "Scala"
+
+#: auto-thickbox-options.php:207
+msgid "Drag &amp; Drop"
+msgstr "Drag &amp; Drop"
+
+#: auto-thickbox-options.php:208
+#: auto-thickbox-options.php:218
+#: auto-thickbox-options.php:320
+#: auto-thickbox-options.php:423
+#: auto-thickbox-options.php:435
+#: auto-thickbox-options.php:466
+#: auto-thickbox-options.php:530
+#: auto-thickbox-options.php:574
+msgid "Window"
+msgstr "Finestra"
+
+#: auto-thickbox-options.php:211
+#: auto-thickbox-options.php:221
+msgid "Move"
+msgstr "Sposta"
+
+#: auto-thickbox-options.php:213
+#: auto-thickbox-options.php:223
+msgid "Resize"
+msgstr "Ridimensiona"
+
+#: auto-thickbox-options.php:218
+#: auto-thickbox-options.php:435
+#: auto-thickbox.php:776
+msgid "Content"
+msgstr "Contenuto"
+
+#: auto-thickbox-options.php:243
+msgid "Left"
+msgstr "Sinistra"
+
+#: auto-thickbox-options.php:247
+#: auto-thickbox-options.php:263
+msgid "Space"
+msgstr "Spazio"
+
+#: auto-thickbox-options.php:259
+msgid "Right"
+msgstr "Destra"
+
+#: auto-thickbox-options.php:295
+#: auto-thickbox-options.php:319
+msgid "Position"
+msgstr "Posizione"
+
+#: auto-thickbox-options.php:296
+#: auto-thickbox-options.php:330
+#: auto-thickbox-options.php:348
+#: auto-thickbox-options.php:369
+#: auto-thickbox-options.php:399
+#: auto-thickbox-options.php:583
+#: auto-thickbox-options.php:615
+#: auto-thickbox-options.php:640
+#: auto-thickbox-options.php:643
+#: auto-thickbox-options.php:790
+msgid "Title"
+msgstr "Titolo"
+
+#: auto-thickbox-options.php:299
+#: auto-thickbox-options.php:311
+msgid "Top"
+msgstr "sopra"
+
+#: auto-thickbox-options.php:301
+#: auto-thickbox-options.php:313
+msgid "Bottom"
+msgstr "pulsante"
+
+#: auto-thickbox-options.php:308
+#: auto-thickbox-options.php:339
+#: auto-thickbox-options.php:355
+#: auto-thickbox-options.php:379
+#: auto-thickbox-options.php:411
+#: auto-thickbox-options.php:592
+#: auto-thickbox-options.php:624
+#: auto-thickbox-options.php:645
+#: auto-thickbox-options.php:805
+msgid "Caption"
+msgstr "Didascalia"
+
+#: auto-thickbox-options.php:319
+msgid "https://developer.mozilla.org/en/CSS/position"
+msgstr "https://developer.mozilla.org/en/CSS/position"
+
+#: auto-thickbox-options.php:323
+msgid "Fixed"
+msgstr "Fissa"
+
+#: auto-thickbox-options.php:325
+msgid "Absolute"
+msgstr "assoluto"
+
+#: auto-thickbox-options.php:329
+msgid "https://developer.mozilla.org/en/CSS/font-family"
+msgstr "https://developer.mozilla.org/en/CSS/font-family"
+
+#: auto-thickbox-options.php:334
+#: auto-thickbox-options.php:343
+msgid "Bold"
+msgstr "Grassetto"
+
+#: auto-thickbox-options.php:347
+msgid "https://developer.mozilla.org/en/CSS/font-size"
+msgstr "https://developer.mozilla.org/en/CSS/font-size"
+
+#: auto-thickbox-options.php:362
+#: auto-thickbox-options.php:389
+msgid "Navigation"
+msgstr "Navigazione"
+
+#: auto-thickbox-options.php:368
+msgid "https://developer.mozilla.org/en/CSS/color"
+msgstr "https://developer.mozilla.org/en/CSS/color"
+
+#: auto-thickbox-options.php:368
+msgid "Text Color"
+msgstr "Colore testo"
+
+#: auto-thickbox-options.php:398
+msgid "https://developer.mozilla.org/en/CSS/background-color"
+msgstr "https://developer.mozilla.org/en/CSS/background-color"
+
+#: auto-thickbox-options.php:398
+msgid "Background Color"
+msgstr "Colore sfondo"
+
+#: auto-thickbox-options.php:405
+#: auto-thickbox-options.php:417
+#: auto-thickbox-options.php:429
+#: auto-thickbox-options.php:441
+#: auto-thickbox-options.php:453
+#: auto-thickbox-options.php:548
+#: auto-thickbox-options.php:563
+msgid "Transparent"
+msgstr "trasparente"
+
+#: auto-thickbox-options.php:458
+msgid "https://developer.mozilla.org/en/CSS/margin"
+msgstr "https://developer.mozilla.org/en/CSS/margin"
+
+#: auto-thickbox-options.php:458
+msgid "Margin"
+msgstr "Margine"
+
+#: auto-thickbox-options.php:465
+msgid "https://developer.mozilla.org/en/CSS/border"
+msgstr "https://developer.mozilla.org/en/CSS/border"
+
+#: auto-thickbox-options.php:465
+msgid "Border"
+msgstr "Bordo"
+
+#: auto-thickbox-options.php:482
+msgid "Top left"
+msgstr "Alto a sinistra"
+
+#: auto-thickbox-options.php:498
+msgid "Bottom right"
+msgstr "Basso a destra"
+
+#: auto-thickbox-options.php:529
+msgid "https://developer.mozilla.org/en/CSS/border-radius"
+msgstr "https://developer.mozilla.org/en/CSS/border-radius"
+
+#: auto-thickbox-options.php:529
+msgid "Border Radius"
+msgstr "Raggio bordo"
+
+#: auto-thickbox-options.php:543
+msgid "https://developer.mozilla.org/en/CSS/opacity"
+msgstr "https://developer.mozilla.org/en/CSS/opacity"
+
+#: auto-thickbox-options.php:543
+msgid "Opacity"
+msgstr "Opacit&agrave;"
+
+#: auto-thickbox-options.php:550
+#: auto-thickbox-options.php:565
+msgid "Opaque"
+msgstr "opaco"
+
+#: auto-thickbox-options.php:559
+msgid "Thumbnail"
+msgstr "Miniatura"
+
+#: auto-thickbox-options.php:573
+msgid "https://developer.mozilla.org/en/CSS/box-shadow"
+msgstr "https://developer.mozilla.org/en/CSS/box-shadow"
+
+#: auto-thickbox-options.php:573
+msgid "Box Shadow"
+msgstr "Box Shadow"
+
+#: auto-thickbox-options.php:582
+msgid "https://developer.mozilla.org/en/CSS/text-shadow"
+msgstr "https://developer.mozilla.org/en/CSS/text-shadow"
+
+#: auto-thickbox-options.php:582
+msgid "Text Shadow"
+msgstr "Text Shadow"
+
+#: auto-thickbox-options.php:641
+#: auto-thickbox-options.php:647
+msgid "Name"
+msgstr "Nome"
+
+#: auto-thickbox-options.php:642
+msgid "Blank"
+msgstr "Blank"
+
+#: auto-thickbox-options.php:644
+msgid "Alternate Text"
+msgstr "Alternate Text"
+
+#: auto-thickbox-options.php:646
+msgid "Description"
+msgstr "Descrizione"
+
+#: auto-thickbox-options.php:717
+msgid "Button"
+msgstr "Pulsante"
+
+#: auto-thickbox-options.php:754
+#: auto-thickbox-options.php:767
+#: auto-thickbox-options.php:780
+#: auto-thickbox-options.php:793
+#: auto-thickbox-options.php:808
+msgid "Zoom"
+msgstr "zoom"
+
+#: auto-thickbox-options.php:756
+#: auto-thickbox-options.php:769
+#: auto-thickbox-options.php:782
+#: auto-thickbox-options.php:795
+#: auto-thickbox-options.php:810
+msgid "Slide"
+msgstr "slide"
+
+#: auto-thickbox-options.php:758
+#: auto-thickbox-options.php:771
+#: auto-thickbox-options.php:784
+#: auto-thickbox-options.php:797
+#: auto-thickbox-options.php:812
+msgid "Fade"
+msgstr "fade"
+
+#: auto-thickbox-options.php:777
+msgid "Transition"
+msgstr "Transizione"
+
+#: auto-thickbox-options.php:801
+#: auto-thickbox-options.php:816
+msgid "Hide initially"
+msgstr "Nascondi all&apos;avvio"
+
+#: auto-thickbox-options.php:820
+msgid "Speed"
+msgstr "Velocit&agrave;"
+
+#: auto-thickbox-options.php:823
+msgid "Fast"
+msgstr "rapido"
+
+#: auto-thickbox-options.php:825
+msgid "Normal"
+msgstr "normale"
+
+#: auto-thickbox-options.php:827
+msgid "Slow"
+msgstr "lento"
+
+#: auto-thickbox-options.php:840
+msgid "Put rating stars or vote compatibility (works/broken)"
+msgstr "Esprimi un voto e/o segnala compatibilit&agrave; (works/broken)"
+
+#: auto-thickbox-options.php:841
+msgid "View support forum or post a new topic"
+msgstr "Vai al forum di supporto o partecipa"
+
+#: auto-thickbox-options.php:842
+msgid "Translate the plugin into your language"
+msgstr "Traduci il plugin nella tua lingua"
+
+#: auto-thickbox-options.php:843
+#: auto-thickbox.php:507
+msgid "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=D2DLJNSUFBU4U"
+msgstr "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=D2DLJNSUFBU4U"
+
+#: auto-thickbox-options.php:843
+msgid "Donate to support plugin development"
+msgstr "Effettua una donazione per supportare lo sviluppo del plugin"
+
+#: auto-thickbox-options.php:844
+#: auto-thickbox.php:170
+#: auto-thickbox.php:506
+msgid "http://attosoft.info/en/"
+msgstr "http://attosoft.info/en/"
+
+#: auto-thickbox-options.php:844
+msgid "Contact me if you have any feedback"
+msgstr "Contattami per il tuo feedback"
+
+#: auto-thickbox-options.php:884
+msgid "Settings reset."
+msgstr "Le impostazioni sono state ripristinate."
+
+#: auto-thickbox.php:149
+msgid "This feature requires inline frames. You have iframes disabled or your browser does not support them."
+msgstr ""
+
+#: auto-thickbox.php:157
+msgid "Actual Size"
+msgstr ""
+
+#: auto-thickbox.php:158
+msgid "Fit to Window"
+msgstr ""
+
+#: auto-thickbox.php:497
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: auto-thickbox.php:505
+msgid "Support"
+msgstr "Supporto"
+
+#: auto-thickbox.php:507
+msgid "Donate"
+msgstr "Donazioni"
+
+#: auto-thickbox.php:756
+msgid "of"
+msgstr "di"
+
+#: auto-thickbox.php:771
+msgid "WordPress Gallery"
+msgstr "Galleria WordPress"
+
+#: auto-thickbox.php:773
+msgid "Gallery"
+msgstr "Galleria"
+
+#: auto-thickbox.php:774
+msgid "Content, Excerpt, Comments, Widgets"
+msgstr "Contenuto, Riassunto, Commenti, Widget"
+
+#: auto-thickbox.php:776
+msgid "Excerpt"
+msgstr "Riassunto"
+
+#: auto-thickbox.php:776
+msgid "Widgets"
+msgstr "Widget"
+
+#~ msgid ""
+#~ "Overlays linked image, inline, iFrame and AJAX content on the page in "
+#~ "simple & fast effects. (improved version of Auto Thickbox plugin)"
+#~ msgstr ""
+#~ "Overlay immagini, inline, iFrame e contenuti AJAX nelle pagine con "
+#~ "effetti simple & fast. (versione migliorata del plugin Auto Thickbox)"
+
+#~ msgid "Open"
+#~ msgstr "Apri"
+
+#~ msgid "Select a File"
+#~ msgstr "Seleziona file"
