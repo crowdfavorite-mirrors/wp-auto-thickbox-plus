@@ -2,8 +2,8 @@
 /*
 Plugin Name: Auto ThickBox Plus
 Plugin URI: http://attosoft.info/en/blog/auto-thickbox-plus/
-Description: Overlays linked image, inline, iFrame and AJAX content on the page in simple & fast effects. (improved version of Auto Thickbox plugin)
-Version: 1.7
+Description: Automatically applies ThickBox script that overlays linked image, inline, iFramed and AJAX content on the page in simple effect.
+Version: 1.9
 Author: attosoft
 Author URI: http://attosoft.info/en/
 License: GPL 2.0
@@ -28,13 +28,11 @@ Domain Path: /languages
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/* This plugin is mainly based on Auto Thickbox plugin by Denis de Bernardy.
+/* This plugin is partially based on Auto Thickbox by Denis de Bernardy
 	http://www.semiologic.com/software/auto-thickbox/
 */
 
-define('ATBP_NAME', 'Auto ThickBox Plus');
-define('ATBP_SLUG', 'auto-thickbox-plus');
-define('ATBP_VER', '1.7');
+define('AUTO_THICKBOX_PLUS_VER', '1.9');
 
 /**
  * auto_thickbox
@@ -86,7 +84,8 @@ class auto_thickbox {
 	 * @return anchor $anchor
 	 **/
 	function image($anchor) {
-		if ( ($this->options['thickbox_text'] == 'off' && !preg_match("/^\s*<\s*img\s.+?>\s*$/is", $anchor['body']))
+		if ( ($this->options['thickbox_img'] == 'off' && preg_match("/^\s*<\s*img\s.+?>\s*$/is", $anchor['body']))
+			|| ($this->options['thickbox_text'] == 'off' && !preg_match("/^\s*<\s*img\s.+?>\s*$/is", $anchor['body']))
 			|| ($this->options['thickbox_target'] == 'off' && !empty($anchor['attr']['target'])) )
 			return $anchor;
 
@@ -131,13 +130,13 @@ class auto_thickbox {
 	 * @return void
 	 **/
 	function scripts() {
-		if ( $this->options['builtin_res'] == 'off' ) {
+		if ( $this->options['thickbox_type'] == 'modified' ) {
 			wp_deregister_script('thickbox');
 			$in_footer = $this->options['script_place'] == 'footer';
-			wp_register_script('thickbox', $this->util->plugins_url(WP_DEBUG ? 'thickbox.js' :'thickbox.min.js'), array('jquery'), ATBP_VER, $in_footer);
+			wp_register_script('thickbox', $this->util->plugins_url('thickbox.min.js'), array('jquery'), AUTO_THICKBOX_PLUS_VER, $in_footer);
 		}
 		wp_enqueue_script('thickbox');
-		if ( $this->options['builtin_res'] == 'off' ) {
+		if ( $this->options['thickbox_type'] == 'modified' ) {
 			$l10n = array(
 				'next' => $this->texts['next'],
 				'prev' => $this->texts['prev'],
@@ -154,10 +153,10 @@ class auto_thickbox {
 				case 'open': $l10n['open'] = $this->texts['open']; break;
 				case 'download':
 					$l10n['download'] = $this->util->__('Download');
-					$l10n['forceDL'] = $this->util->plugins_url('download.php');
+					$l10n['forceDL'] = $this->util->plugins_url('download.min.php');
 					break;
 				case 'expand_shrink':
-					$l10n['actual'] = $this->util->_s('Actual Size', 'Original Size');
+					$l10n['actual'] = $this->util->__('Actual Size', 'Original Size');
 					$l10n['fit'] = $this->util->__('Fit to Window');
 					break;
 			}
@@ -171,9 +170,9 @@ class auto_thickbox {
 	 * @return void
 	 **/
 	function styles() {
-		if ( $this->options['builtin_res'] == 'off' ) {
+		if ( $this->options['thickbox_type'] == 'modified' ) {
 			wp_deregister_style('thickbox');
-			wp_register_style('thickbox', $this->util->plugins_url(WP_DEBUG ? 'thickbox.css' : 'thickbox.min.css'), false, ATBP_VER);
+			wp_register_style('thickbox', $this->util->plugins_url('thickbox.min.css'), false, AUTO_THICKBOX_PLUS_VER);
 		}
 		wp_enqueue_style('thickbox');
 	} # styles()
@@ -197,6 +196,10 @@ jQuery(function($) {
 		var nothickbox = ['<?php echo str_replace(' ', '\', \'', trim($this->options['no_thickbox'])); ?>'];
 		for (var i = 0; i < nothickbox.length; i++)
 			if ($(this).hasClass(nothickbox[i])) return false;
+<?php if ($this->options['thickbox_img'] == 'off') : ?>
+		// Image links to images
+		if ($(this).is(':has(img)')) return false;
+<?php endif; ?>
 <?php if ($this->options['thickbox_text'] == 'off') : ?>
 		// Text links to images
 		if (!$(this).is(':has(img)')) return false;
@@ -246,8 +249,8 @@ jQuery(function($) {
 
 	// Set a different gallery-id for each WordPress Gallery
 	$('div.gallery').each(function() {
-		var id = $(this).attr('class').match(/galleryid-\d+/);
-		$(this).find('a.thickbox').attr('rel', id);
+		if (this.id)
+			$(this).find('a.thickbox').attr('rel', this.id);
 	});
 <?php
 		}
@@ -255,7 +258,7 @@ jQuery(function($) {
 });
 
 <?php
-		if ($this->options['builtin_res'] == 'on') {
+		if ($this->options['thickbox_type'] == 'built-in') {
 			if ( version_compare('3.2', get_bloginfo('version')) > 0 ) {
 				$includes_url = includes_url();
 				echo <<<SCRIPT
@@ -267,11 +270,13 @@ SCRIPT;
 			}
 		}
 
-		if ( $this->options['builtin_res'] == 'off') {
+		if ( $this->options['thickbox_type'] == 'modified') {
 		$script = '';
 
-		if ( !$this->is_default_options('auto_resize') )
-			$script .= "tb_options.auto_resize = " . var_export($this->options['auto_resize'] == 'on', true) . ";\n";
+		if ( !$this->is_default_options('auto_resize_img') )
+			$script .= "tb_options.auto_resize_img = " . var_export($this->options['auto_resize_img'] == 'on', true) . ";\n";
+		if ( !$this->is_default_options('auto_resize_html') )
+			$script .= "tb_options.auto_resize_html = " . var_export($this->options['auto_resize_html'] == 'on', true) . ";\n";
 		if ( !$this->is_default_options('effect_open') )
 			$script .= "tb_options.effect_open = '{$this->options['effect_open']}';\n";
 		if ( !$this->is_default_options('effect_close') )
@@ -300,10 +305,10 @@ SCRIPT;
 			$script .= "tb_options.move_img = " . var_export($this->options['drag_img_move'] == 'on', true) . ";\n";
 		if ( !$this->is_default_options('drag_img_resize') )
 			$script .= "tb_options.resize_img = " . var_export($this->options['drag_img_resize'] == 'on', true) . ";\n";
-		if ( !$this->is_default_options('drag_content_move') )
-			$script .= "tb_options.move_content = " . var_export($this->options['drag_content_move'] == 'on', true) . ";\n";
-		if ( !$this->is_default_options('drag_content_resize') )
-			$script .= "tb_options.resize_content = " . var_export($this->options['drag_content_resize'] == 'on', true) . ";\n";
+		if ( !$this->is_default_options('drag_html_move') )
+			$script .= "tb_options.move_html = " . var_export($this->options['drag_html_move'] == 'on', true) . ";\n";
+		if ( !$this->is_default_options('drag_html_resize') )
+			$script .= "tb_options.resize_html = " . var_export($this->options['drag_html_resize'] == 'on', true) . ";\n";
 		$keys_close = array();
 		if ( $this->options['key_close_esc'] == 'on' ) $keys_close[] = 27;
 		if ( $this->options['key_close_enter'] == 'on' ) $keys_close[] = 13;
@@ -338,10 +343,20 @@ SCRIPT;
 		if ( !$this->is_default_options('position_cap') )
 			$script .= "tb_options.position_cap = '{$this->options['position_cap']}';\n";
 
+		if ( !$this->is_default_options('mobile_support') )
+			$script .= "tb_options.mobile_support = '{$this->options['mobile_support']}';\n";
+		if ( !$this->is_default_options('small_width') )
+			$script .= "tb_options.small_width = {$this->options['small_width']};\n";
+		if ( !$this->is_default_options('small_height') )
+			$script .= "tb_options.small_height = {$this->options['small_height']};\n";
 		if ( !$this->is_default_options('win_width') )
 			$script .= "tb_options.win_width = {$this->options['win_width']};\n";
 		if ( !$this->is_default_options('win_height') )
 			$script .= "tb_options.win_height = {$this->options['win_height']};\n";
+		if ( !$this->is_default_options('margin_win_img') )
+			$script .= "tb_options.margin_win_img = {$this->options['margin_win_img']};\n";
+		if ( !$this->is_default_options('margin_win_html') )
+			$script .= "tb_options.margin_win_html = {$this->options['margin_win_html']};\n";
 
 		if ( !$this->is_default_options('ref_title') )
 			$script .= "tb_options.ref_title = [{$this->options['ref_title']}];\n";
@@ -393,9 +408,9 @@ SCRIPT;
 		}
 		if ( !$this->is_default_options('bgcolor_img') )
 			$style .= "#TB_window.TB_imageContent { background-color:{$this->options['bgcolor_img']}; }\n";
-		if ( !$this->is_default_options('bgcolor_content') ) {
-			$style .= "#TB_window.TB_ajaxContent,#TB_window.TB_iframeContent,#TB_ajaxContent,#TB_iframeContent,#TB_ajaxContentMarginTop,#TB_ajaxContentMarginBottom { background-color:{$this->options['bgcolor_content']}; }\n";
-			$style .= "::-webkit-scrollbar-corner { background-color:{$this->options['bgcolor_content']}; }\n";
+		if ( !$this->is_default_options('bgcolor_html') ) {
+			$style .= "#TB_window.TB_ajaxContent,#TB_window.TB_iframeContent,#TB_ajaxContent,#TB_iframeContent,#TB_ajaxContentMarginTop,#TB_ajaxContentMarginBottom { background-color:{$this->options['bgcolor_html']}; }\n";
+			$style .= "::-webkit-scrollbar-corner { background-color:{$this->options['bgcolor_html']}; }\n";
 		}
 		if ( !$this->is_default_options('bgcolor_bg') )
 			$style .= ".TB_overlayBG { background-color:{$this->options['bgcolor_bg']}; }\n";
@@ -498,7 +513,7 @@ SCRIPT;
 			$style .= "#TB_CaptionBar { visibility: hidden; }\n";
 
 		if ($style)
-			echo "<style type='text/css'>\n$style</style>\n";
+			echo "<style type='text/css'>\n{$style}</style>\n";
 	}
 
 	function is_default_options($names) {
@@ -514,17 +529,17 @@ SCRIPT;
 
 	function add_auto_thickbox_action_links($links, $file) {
 		if ( $file == plugin_basename(__FILE__) )
-			$links[] = '<a href="options-general.php?page=' . ATBP_SLUG . '">' . $this->util->__('Settings') . '</a>';
+			$links[] = '<a href="options-general.php?page=auto-thickbox-plus">' . $this->util->__('Settings') . '</a>';
 		return $links;
 	}
 
 	// Additional links on the Plugins page
 	function add_auto_thickbox_links($links, $file) {
 		if ( $file == plugin_basename(__FILE__) ) {
-			$links[] = '<a href="plugin-install.php?tab=plugin-information&plugin=' . ATBP_SLUG . '&TB_iframe" class="thickbox" title="' . ATBP_NAME . '">' . $this->util->_s('Show Details', 'Details') . '</a>';
+			$links[] = '<a href="plugin-install.php?tab=plugin-information&plugin=auto-thickbox-plus&TB_iframe" class="thickbox" title="Auto ThickBox Plus">' . $this->util->__('Show Details', 'Details') . '</a>';
 			$links[] = '<a href="http://wordpress.org/support/plugin/auto-thickbox-plus" target="_blank">' . $this->util->__('Support') . '</a>';
-			$links[] = '<a href="' . $this->util->__('http://attosoft.info/en/') . 'contact/" target="_blank">' . ucfirst($this->util->_s('Contact', 'contact')) . '</a>';
-			$links[] = '<a href="' . $this->util->__('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=D2DLJNSUFBU4U') . '" target="_blank">' . $this->util->__('Donate') . '</a>';
+			$links[] = '<a href="' . $this->util->__('http://attosoft.info/en/') . 'contact/" target="_blank">' . ucfirst($this->util->__('Contact', 'contact')) . '</a>';
+			$links[] = '<a href="' . $this->util->__('http://attosoft.info/en/') . 'donate/" target="_blank">' . $this->util->__('Donate') . '</a>';
 		}
 		return $links;
 	}
@@ -538,7 +553,7 @@ SCRIPT;
 	}
 
 	function __construct() {
-		load_plugin_textdomain('auto-thickbox', false, ATBP_SLUG . '/languages');
+		load_plugin_textdomain('auto-thickbox', false, 'auto-thickbox-plus/languages');
 
 		if (require_once dirname(__FILE__) . '/auto-thickbox-utils.php')
 			$this->util = new auto_thickbox_utils();
@@ -572,13 +587,18 @@ SCRIPT;
 		$this->options_def = array(
 			'thickbox_style' => 'single',
 			'wp_gallery' => 'on',
-			'auto_thickbox' => 'filter',
+			'auto_thickbox' => 'js',
+			'thickbox_img' => 'on',
 			'thickbox_text' => 'on',
 			'thickbox_target' => 'off',
 			'no_thickbox' => 'nothickbox no_thickbox ',
-			'auto_resize' => 'on',
-			'builtin_res' => 'off',
+			'auto_resize_img' => 'on',
+			'auto_resize_html' => 'off',
+			'thickbox_type' => 'modified',
 			'script_place' => 'header',
+			'mobile_support' => 'no_margin',
+			'small_width' => '480',
+			'small_height' => '480',
 			'effect_open' => 'none',
 			'effect_close' => 'fade',
 			'effect_trans' => 'none',
@@ -595,8 +615,8 @@ SCRIPT;
 			'wheel_bg' => 'scroll',
 			'drag_img_move' => 'off',
 			'drag_img_resize' => 'off',
-			'drag_content_move' => 'off',
-			'drag_content_resize' => 'off',
+			'drag_html_move' => 'off',
+			'drag_html_resize' => 'off',
 			'key_close_esc' => 'on',
 			'key_close_enter' => 'on',
 			'key_prev_angle' => 'on',
@@ -627,9 +647,11 @@ SCRIPT;
 			'bgcolor_title' => '#e8e8e8',
 			'bgcolor_cap' => 'transparent',
 			'bgcolor_img' => 'white',
-			'bgcolor_content' => 'white',
+			'bgcolor_html' => 'white',
 			'bgcolor_bg' => 'black',
 			'margin_img' => '15',
+			'margin_win_img' => '15',
+			'margin_win_html' => '30',
 			'border_win' => '1px solid #555',
 			'border_width_win' => '1',
 			'border_style_win' => 'solid',
@@ -664,7 +686,7 @@ SCRIPT;
 			'img_close_btn' => $this->util->plugins_url('images/tb-close.png'),
 			'img_load' => $this->util->plugins_url('images/loadingAnimation.gif')
 		);
-		$this->options = get_option(ATBP_SLUG);
+		$this->options = get_option('auto-thickbox-plus');
 		$this->options = $this->options ? wp_parse_args($this->options, $this->options_def) : $this->options_def;
 
 		// XXX: transition code for v0.5 or earlier
@@ -740,16 +762,48 @@ SCRIPT;
 			$updateOption = true;
 		}
 
+		// XXX: transition code for v1.8 or earlier
+		if (isset($this->options['auto_resize'])) {
+			$this->options['auto_resize_img'] = $this->options['auto_resize'];
+			unset($this->options['auto_resize']);
+			$updateOption = true;
+		}
+		if (isset($this->options['margin_win'])) {
+			$this->options['margin_win_img'] = $this->options['margin_win'];
+			unset($this->options['margin_win']);
+			$updateOption = true;
+		}
+		if (isset($this->options['drag_content_move'])) {
+			$this->options['drag_html_move'] = $this->options['drag_content_move'];
+			unset($this->options['drag_content_move']);
+			$updateOption = true;
+		}
+		if (isset($this->options['drag_content_resize'])) {
+			$this->options['drag_html_resize'] = $this->options['drag_content_resize'];
+			unset($this->options['drag_content_resize']);
+			$updateOption = true;
+		}
+		if (isset($this->options['bgcolor_content'])) {
+			$this->options['bgcolor_html'] = $this->options['bgcolor_content'];
+			unset($this->options['bgcolor_content']);
+			$updateOption = true;
+		}
+		if (isset($this->options['builtin_res'])) {
+			$this->options['thickbox_type'] = $this->options['builtin_res'] == 'on' ? 'built-in' : 'modified';
+			unset($this->options['builtin_res']);
+			$updateOption = true;
+		}
+
 		if ($this->is_default_options('post_id')) {
 			$args = array(
 				'post_status' => 'draft',
-				'post_type' => ATBP_SLUG
+				'post_type' => 'auto-thickbox-plus'
 			);
 			$posts = get_posts($args);
 			if (count($posts))
 				$this->options['post_id'] = $posts[0]->ID;
 			else {
-				$args['post_title'] = ATBP_NAME;
+				$args['post_title'] = 'Auto ThickBox Plus';
 				$this->options['post_id'] = wp_insert_post($args);
 			}
 			$updateOption = true;
@@ -761,43 +815,39 @@ SCRIPT;
 		}
 
 		if (is_admin()) {
-			$this->options['text_first'] = $this->util->_s('First', 'first');
-			$this->options['text_last'] = $this->util->_s('Last', 'last');
+			$this->options['text_first'] = $this->util->__('First', 'first');
+			$this->options['text_last'] = $this->util->__('Last', 'last');
 			$updateOption = true;
 		}
 
 		if ($updateOption)
-			update_option(ATBP_SLUG, $this->options);
+			update_option('auto-thickbox-plus', $this->options);
 	}
 
 	function init_texts() {
-		$this->texts['next'] = $this->util->_s('Next &gt;', 'Next &raquo;');
+		$this->texts['next'] = $this->util->__('Next &gt;', 'Next &raquo;');
 		$this->texts['next2'] = trim(str_replace(array('&gt;', '&raquo;'), '', $this->texts['next']));
-		$this->texts['prev'] = $this->util->_s('&lt; Prev', '&laquo; Previous');
+		$this->texts['prev'] = $this->util->__('&lt; Prev', '&laquo; Previous');
 		$this->texts['prev2'] = trim(str_replace(array('&lt;', '&laquo;'), '', $this->texts['prev']));
-		$this->texts['image'] = $this->util->_s('Image', 'Images', 'File', 'Files');
+		$this->texts['image'] = $this->util->__('Image', 'Images', 'File', 'Files');
 		$this->texts['of'] = $this->util->__('of');
 		if (trim($this->texts['of']) == '' || ($this->texts['of'] == 'of' && strpos(get_locale(), 'en') === false))
 			$this->texts['of'] = '/';
-		$this->texts['close'] = ucfirst($this->util->_s('Close', 'close'));
-
-		$full_colon = html_entity_decode('&#xFF1A;', ENT_NOQUOTES, 'UTF-8');
-		$this->texts['options'] = $this->util->_s('Options', 'Options:', 'Settings');
-		$this->texts['options'] = ATBP_NAME . ' ' . str_replace(array(':', $full_colon), '', $this->texts['options']);
+		$this->texts['close'] = ucfirst($this->util->__('Close', 'close'));
 
 		$this->texts['first2'] = empty($this->options['text_first']) ? 'First' : ucfirst($this->options['text_first']);
 		$this->texts['first'] = '&laquo; ' . $this->texts['first2'];
 		$this->texts['last2'] = empty($this->options['text_last']) ? 'Last' : ucfirst($this->options['text_last']);
 		$this->texts['last'] = $this->texts['last2'] . ' &raquo;';
 
-		$this->texts['none'] = ucfirst($this->util->_s('None', 'none'));
+		$this->texts['none'] = ucfirst($this->util->__('None', 'none'));
 		$this->texts['wp_gallery'] = $this->util->__('WordPress Gallery');
 		if ($this->texts['wp_gallery'] == 'WordPress Gallery')
 			$this->texts['wp_gallery'] = 'WordPress ' . __('Gallery');
 		$this->texts['content_etc'] = $this->util->__('Content, Excerpt, Comments, Widgets');
 		if ($this->texts['content_etc'] == 'Content, Excerpt, Comments, Widgets')
-			$this->texts['content_etc'] = __('Content') . ', ' . __('Excerpt') . ', ' . $this->util->_s('Comments', 'Comment') . ', ' . __('Widgets');
-		$this->texts['open'] = ucfirst($this->util->_s('Open', 'open'));
+			$this->texts['content_etc'] = __('Content') . ', ' . __('Excerpt') . ', ' . $this->util->__('Comments', 'Comment') . ', ' . __('Widgets');
+		$this->texts['open'] = ucfirst($this->util->__('Open', 'open'));
 	}
 
 } # auto_thickbox

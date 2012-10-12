@@ -1,46 +1,42 @@
 === Auto ThickBox Plus ===
 Contributors: attosoft
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=D2DLJNSUFBU4U
-Tags: lightbox, thickbox, shadowbox, gallery, semiologic, image, images, thumbnail, thumbnails, popup, pop-up, overlay, photo, photos, picture, pictures, javascript, simple, inline, iframe, ajax, jquery, plugin, plugins, link, links, widget, widgets, nextgen, nextgen gallery
+Donate link: http://attosoft.info/en/donate/
+Tags: lightbox, thickbox, gallery, image, images, thumbnail, thumbnails, popup, pop-up, overlay, photo, photos, picture, pictures, javascript, inline, iframe, ajax, jquery, plugin, plugins, link, links, widget, widgets, nextgen, nextgen gallery, mobile, iphone, android
 Requires at least: 2.7
-Tested up to: 3.4.1
+Tested up to: 3.4.2
 Stable tag: trunk
 
-Overlays linked image, inline, iFrame and AJAX content on the page in simple & fast effects. (improved version of Auto Thickbox plugin)
+Automatically applies ThickBox script that overlays linked image, inline, iFramed and AJAX content on the page in simple effect.
 
 == Description ==
 
-Auto ThickBox Plus plugin is the improved version of [Auto Thickbox](http://wordpress.org/extend/plugins/auto-thickbox/) plugin, with some extra features and bug fixes.
+Auto ThickBox Plus is WordPress plugin that applies [ThickBox script](http://thickbox.net/) to your site automatically. ThickBox is commonly-used Lightbox-like plugin, and can overlay linked image, inline, iFramed and AJAX content on the page in simple effect. All you have to do is write links like below, and the linked contents will be overlaid by clicking themselves.
 
-By clicking on links, this plugin overlays linked content on the page in simple & fast effects. It's recommended if you want to pop up thumbnails easily in its original size.
+    <a href="image"><img src="thumbnail" /></a>
+    <a href="image">Image Content</a>
+    <a href="#TB_inline?inlineId=id">Inline Content</a>
+    <a href="url?TB_iframe">iFramed Content</a>
+    <a href="url" class="thickbox">AJAX Content</a>
 
-= Basic Features =
+= Auto ThickBox Plus Features =
 
-* Automatically applies [ThickBox script](http://thickbox.net/) to thumbnails including WordPress Galleries
-  * All you do is upload images to WordPress Gallery or write image links to images (`<a href="image"><img /></a>`)
-* Pop-up effects are simple & fast compared to Lightbox, ColorBox, FancyBox, Shadowbox, Slimbox and so on
-  * ThickBox will be the answer if you prefer no animation effects & no fancy design
-* Automatically resizes images that are larger than the browser window
-* Uses WordPress built-in ThickBox library (no need to install the script and refer to it)
+* Automatically applies [ThickBox script](http://thickbox.net/) to your site
+* All you have to do is write links. No JavaScript, No Shortcode, No Gallery.
+* Plugin behavior and ThickBox design can be customized via [Settings screen](screenshots/)
+* Support for WordPress Gallery and gallery plugins such as [NextGEN Gallery](http://wordpress.org/extend/plugins/nextgen-gallery/)
+* Compatible widely down to even obsolete WordPress 2.7
+* Compatible with cache plugins such as [W3 Total Cache](http://wordpress.org/extend/plugins/w3-total-cache/)
+* ThickBox window is localized to more than 70 languages by default
 
-= Extra Features =
+= Modified ThickBox Features =
 
-* Overlays images in either "Gallery Images" or "**Single Image**" style
-* Automatically applies ThickBox to **text links** to images (`<a href="image">text</a>`)
-* **Auto Resize** feature can be disabled if you prefer
-* ThickBox window can be **moved/resized by dragging** mouse
-* Can be customized the behavior & design through **more than 60 options**
-  * e.g. Click action can be selected from 'Close', 'None', 'Next' and 'Prev/Next'
-* Supports also BMP and [WebP](http://code.google.com/speed/webp/) image formats
-* Supports **Inline content** on the page (`#TB_inline`)
-* Supports **AJAX content** (displays internal files on the page without iframe)
-* Compatible widely down to even **obsolete WordPress 2.7**
-* Compatible with default theme in WordPress 3.2/3.3 called **Twenty Eleven**
-* Compatible with cache plugins such as [W3 Total Cache](http://wordpress.org/extend/plugins/w3-total-cache/) and [Head Cleaner](http://wordpress.org/extend/plugins/head-cleaner/)
-* Improved ThickBox is also available in another ThickBox plugins such as [NextGEN Gallery](http://wordpress.org/extend/plugins/nextgen-gallery/)
-* Uses WordPress' default translations
-  * Now ThickBox window is localized to **more than 70 languages** (Arabic, Chinese, Dutch, French, German, Hindi, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish and more)
-* And fixed a lot of bugs in Auto Thickbox plugin and built-in ThickBox (See [Changelog](changelog/))
+* Overlays linked image, inline, iFramed and AJAX content on the page
+* Simpler pop-up effect than other Lightbox-like plugins such as FancyBox, ColorBox, Slimbox, Shadowbox and Lightbox. It's recommended if you prefer no animation effects & no fancy design.
+* Automatically resizes ThickBox window when showing it, and even when resizing browser window
+* Support for more actions by mouse click, wheel scroll, drag & drop, and keyboard shortcuts
+* Many ThickBox options are available, such as auto resize, title/caption position and animation effects
+* Supports Internet Explorer, Mozilla Firefox, Google Chrome, Safari, Opera and their older versions
+* Mobile beta support for small-screen devices such as iPhone and Android
 
 = How to Install =
 
@@ -48,13 +44,13 @@ See [Installation](installation/).
 
 = How to Use =
 
-See [Usage in Other Notes](other_notes/#Usage).
+See [Usage](other_notes/#Usage).
 
 = Support Me =
 
 * To keep my motivation, put rating stars and vote compatibility (works/broken) via the right sidebar
 * If you have any questions, view [support forum](http://wordpress.org/support/plugin/auto-thickbox-plus) or post a new topic
-* See [how to localize](other_notes/#Localization) if you can translate the plugin into your language
+* See [Localization](other_notes/#Localization) if you can translate the plugin into your language
 * I would be grateful if you would [donate to support plugin development](http://attosoft.info/en/donate/)
 * [Contact me](http://attosoft.info/en/contact/) if you have any feedback
 
@@ -62,20 +58,21 @@ Any comments will be very helpful and appreciated. Thank you for your support!
 
 = Special Thanks =
 
-* Dutch (nl_NL) translation - [Michel Bats](http://www.batssoft.nl/)
-* French (fr_FR) translation - [Jean-Bastien Prévots](http://www.jbprevots.fr/)
-* Italian (it_IT) translation - [Gianni Diurno](http://gidibao.net/)
-* Persian/Farsi (fa_IR) translation - [Ali Mohammadi](http://www.NewModel.ir/)
-* Spanish (es_ES) translation - [Juan Antonio Peón](http://www.aprendeausartumovil.com/)
-* Button images in screenshot - [Lukas Häusler](http://lukashausler.com/)
-* Bug fixed code - Olivier Burgard
+* Dutch (nl_NL) translation by [Michel Bats](http://www.batssoft.nl/)
+* French (fr_FR) translation by [Jean-Bastien Prévots](http://www.jbprevots.fr/)
+* Italian (it_IT) translation by [Gianni Diurno](http://gidibao.net/)
+* Persian/Farsi (fa_IR) translation by [Ali Mohammadi](http://www.NewModel.ir/)
+* Spanish (es_ES) translation by [Juan Antonio Peón](http://www.aprendeausartumovil.com/)
+* Swedish (sv_SE) translation by [Lukas Häusler](http://lukashausler.com/)
+* Button images in screenshot by [Lukas Häusler](http://lukashausler.com/)
+* Bug fixed code by Olivier Burgard
 
 = Links =
 
-* [attosoft.info](http://attosoft.info/en/) \[[日本語](http://attosoft.info/)\]
-* [Auto ThickBox Plus Official Site](http://attosoft.info/en/blog/auto-thickbox-plus/) \[[日本語](http://attosoft.info/blog/auto-thickbox-plus/)\]
-* [Auto Thickbox](http://www.semiologic.com/software/auto-thickbox/) (Original)
-* [ThickBox 3.1](http://thickbox.net/) (JavaScript Library)
+* [attosoft.info](http://attosoft.info/en/)
+* [Auto ThickBox Plus](http://attosoft.info/en/blog/auto-thickbox-plus/)
+* [Auto Thickbox](http://www.semiologic.com/software/auto-thickbox/) ([WordPress.org](http://wordpress.org/extend/plugins/auto-thickbox/))
+* [ThickBox 3.1](http://thickbox.net/)
 
 == Installation ==
 
@@ -86,7 +83,7 @@ Any comments will be very helpful and appreciated. Thank you for your support!
 1. Input "thickbox" into text field, and click [Search Plugins]
 1. Click 'Install Now' at 'Auto ThickBox Plus'
 1. Click 'Activate Plugin'
-1. Upload images to WordPress Gallery or write links to images, inline, iFrame or AJAX contents
+1. Upload images to WordPress Gallery or write links to images, inline, iFramed or AJAX contents
 
 = Manual Install =
 
@@ -95,19 +92,19 @@ Any comments will be very helpful and appreciated. Thank you for your support!
 1. Select [Plugins] - [Add New] - 'Upload' tab
 1. Upload the plugin zip file, and click [Install Now]
 1. Click 'Activate Plugin'
-1. Upload images to WordPress Gallery or write links to images, inline, iFrame or AJAX contents
+1. Upload images to WordPress Gallery or write links to images, inline, iFramed or AJAX contents
 
 = Manual Install via FTP =
 
 1. Download [auto-thickbox-plus.zip](http://downloads.wordpress.org/plugin/auto-thickbox-plus.zip), and unzip it
 1. Upload the plugin folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Upload images to WordPress Gallery or write links to images, inline, iFrame or AJAX contents
+1. Upload images to WordPress Gallery or write links to images, inline, iFramed or AJAX contents
 
-\* Note: If Auto Thickbox (not Plus) plugin is installed, you need to deactivate or uninstall it before activating Auto ThickBox Plus plugin. You cannot activate both this plugin and the original plugin at the same time.
+\* Note: If Auto Thickbox has already installed, deactivate or uninstall it before activating Auto ThickBox Plus. You cannot activate both plugins together.
 
 = Customization =
-This is available options at Auto ThickBox Plus Options in 'Settings' menu. You can customize the behavior & design of the plugin through these options. See also [Screenshots](../screenshots/).
+Here is all available options at [Auto ThickBox Plus Settings screen](../screenshots/). You can customize plugin behavior and ThickBox design through the following options.
 
 * General
   * Display Style
@@ -115,6 +112,7 @@ This is available options at Auto ThickBox Plus Options in 'Settings' menu. You 
   * No ThickBox
   * Auto Resize
   * ThickBox Resources
+  * Mobile Support (beta)
 * Action
   * Mouse Click
   * Mouse Wheel
@@ -129,14 +127,14 @@ This is available options at Auto ThickBox Plus Options in 'Settings' menu. You 
   * Background Color
   * Margin
   * Border
-  * Border Raidus
+  * Border Radius
   * Opacity
   * Box Shadow
   * Text Shadow
 * Text
   * Title, Caption
 * Image
-  * Prev/Next, Close, Loading image, etc.
+  * Prev/Next, First/Last, Close and Loading image
 * Effect (beta)
   * Open, Close, Transition, Title/Caption effects and Speed
 
@@ -144,79 +142,80 @@ This is available options at Auto ThickBox Plus Options in 'Settings' menu. You 
 
 = Auto ThickBox Plus does not work =
 
-Most likely, some sort of JavaScript error has occurred in your blog. Please make sure that you can see any messages (errors/warnings) in [browser console](../other_notes/#Error-Console-in-Browsers).
+First, check if any messages are output in error console.
 
-\* If you can send me your blog URL that the plugin does not work, it's easy for me to debug the problem and find the cause quickly.
+* **Internet Explorer**: Double-click the warning icon in status bar, or click [Tools] menu - [Developer Tools], or press [F12] key
+* **Mozilla Firefox**: Click [Firefox/Tools] menu - [Web Developer] - [Error Console], or press [Ctrl+Shift+J] key
+* **Google Chrome**: Click [Tools] menu - [JavaScript console], or press [Ctrl+Shift+J] key
+* **Opera**: Click [Opera] menu - [Page] - [Developer Tools] - [Error Console], or press [Ctrl+Shift+O] key
+* **Safari (Mac)**: Click [Develop] menu - [Show Error Console], or press [Option-Command-C] key
+  * **Safari (Windows)**: Click Page Menu Button - [Developer] - [Show Error Console], or press [Ctrl+Alt+C] key
+  * Note: To enable the developer tools, click Advanced in Safari preferences and check [Show Develop menu in menu bar]
 
-If JavaScript errors have occurred, ThickBox may not work even when loaded properly. If you use cache plugins such as [W3 Total Cache](http://wordpress.org/extend/plugins/w3-total-cache/) and [Head Cleaner](http://wordpress.org/extend/plugins/head-cleaner/), try to deactivate them first.
+Next, check the followings.
 
-If no errors have occurred, ThickBox resources may not have been loaded properly. Please check the followings.
+1. Modified ThickBox in the plugin is loaded properly
+2. Built-in ThickBox in WordPress conflicts with modified ThickBox
+3. "thickbox" class is added to links
 
-**1. Can you see the HTML source codes bellow in your blog?**
+Then, perform the troubleshooting below.
 
-Inside the `<head>` tag:
+* Deactivate current theme because some themes output invalid header/footer, or load built-in ThickBox directly
+* Deactivate plugins that load built-in ThickBox directly, such as [Events Calendar](http://wordpress.org/extend/plugins/events-calendar/)
+* Deactivate plugins that optimizes JS/CSS files, such as [W3 Total Cache](http://wordpress.org/extend/plugins/w3-total-cache/), [WP Minify](http://wordpress.org/extend/plugins/wp-minify/), [CloudFlare](http://wordpress.org/extend/plugins/cloudflare/), [Head Cleaner](http://wordpress.org/extend/plugins/head-cleaner/) and [Head JS](http://headjs.com/)
+* Output JS/CSS files to footer, by selecting [General - ThickBox Resources - Footer] option in Settings screen
+* Use built-in ThickBox in WordPress instead, by selecting [General - ThickBox Resources - Built-in ThickBox] option in Settings screen
 
-    <link rel='stylesheet' id='thickbox-css' href='http://example.com/wp-content/plugins/auto-thickbox-plus/thickbox.min.css?ver=1.x' type='text/css' media='all' />
+If the problem still persists, please send me your site URL via [support forum](http://wordpress.org/support/plugin/auto-thickbox-plus) or [contact form](http://attosoft.info/en/contact/).
 
-Inside the `<head>` tag or before the closing `</body>` tag:
+**1. Modified ThickBox in the plugin is loaded properly**
+
+The following `<script>` and `<style>` tags should be output in your site.
 
     <script type='text/javascript' src='http://example.com/wp-content/plugins/auto-thickbox-plus/thickbox.min.js?ver=1.x'></script>
+    <link rel='stylesheet' id='thickbox-css' href='http://example.com/wp-content/plugins/auto-thickbox-plus/thickbox.min.css?ver=1.x' type='text/css' media='all' />
 
-If you cannot see these tags, you may need to modify theme files because some WordPress themes do not output proper header/footer.
+**2. Built-in ThickBox in WordPress conflicts with modified ThickBox**
 
-And if you see duplicate `<link href="thickbox.css" />` or `<script src="thickbox.js">` tags, you may need to modify theme files or other plugins to avoid confict with this plugin because some WordPress themes and plugins output these tags in a wrong way.
+The following `<script>` and `<style>` tags should NOT be output in your site.
 
-For instance, [Events Calendar](http://wordpress.org/extend/plugins/events-calendar/) plugin outputs `<link href="thickbox.css" />` tag directly without calling WordPress function. As a result, improved thickbox.css has been overwritten with built-in thickbox.css, then ThickBox window layout has broken.
+    <script type='text/javascript' src='http://example.com/wp-includes/js/thickbox/thickbox.js?ver=3.1-20111117'></script>
+    <link rel='stylesheet' id='thickbox-css' href='http://example.com/wp-includes/js/thickbox/thickbox.css?ver=3.x.x' type='text/css' media='all' />
 
-**2. Can you see `class="thickbox"` attribute in `<a>` tag?**
+**3. "thickbox" class is added to links**
 
-This plugin sets `class="thickbox"` attribute to links to images automatically. So `<a>` tags like below must have `class="thickbox"` attribute.
+The plugin adds "thickbox" class to links to images automatically. Thereby `<a>` tags like below should have `class="thickbox"` attribute.
 
-    <a href="image.png" class="thickbox">
-        <img src="image_s.png" alt="foo" />
-    </a>
-    
-    <a href="image.png" class="thickbox" title="foo">Text</a>
+    <a href="image" class="thickbox"><img src="thumbnail" alt="caption" /></a>
+    <a href="image" class="thickbox" title="caption">Text</a>
 
-**3. Try to use built-in ThickBox resources**
-
-Access 'Options' page, and check [ThickBox Resources - Use WordPress built-in thickbox.js/css] option. If ThickBox will work, there will be issues in Auto ThickBox Plus.
-
-= Options are not effective =
-
-If option values are saved, I guess the problem is caused by WordPress theme. Please make sure that ThickBox custom script and style rules (i.e. `<script>`/`<style>` tag) are output in page footer. If they are not output, you may need to modify theme files.
-
-\* If you use [Head JS](http://headjs.com/), select [General - ThickBox Resources - Footer] option.
-
-= Differences between Auto Thickbox and Auto ThickBox Plus =
-
-Auto ThickBox Plus plugin is the improved version of [Auto Thickbox](http://wordpress.org/extend/plugins/auto-thickbox/) plugin, with some extra features and bug fixes.
-
-See "Basic/Extra Features" in [Description](../) for more information. "Basic Features" are also available in Auto Thickbox, but "Extra Features" are available only in Auto ThickBox Plus.
-
-\* Note: Auto ThickBox Plus plugin is besed on Auto Thickbox v.2.0.3 (Jul 20th, 2011).
-
-= Can I use the improved ThickBox in NextGEN Gallery? =
-
-Yes, the improved ThickBox included in this plugins is also available in another ThickBox plugins such as [NextGEN Gallery](http://wordpress.org/extend/plugins/nextgen-gallery/). 
-
-1. Install Auto ThickBox Plus and NextGEN Gallery, and activate them
-2. Access [Dashboard] - [Gallery] - [Options] - [Effects] tab
-3. Select "Thickbox" at [JavaScript Thumbnail effect] option
-4. Write [NextGEN Gallery tags](http://wordpress.org/extend/plugins/nextgen-gallery/faq/) on your post/page (e.g. `[nggallery id=1]`)
-
-Most plugins supported for ThickBox such as NextGEN Gallery use **built-in ThickBox** in WordPress. Auto ThickBox Plus can replace built-in ThickBox with **the improved version** with some extra features and bug fixes. See also "Extra Features" in [Description](../).
-
-= How to access Auto ThickBox Plus Options =
+= Where is Auto ThickBox Plus Settings screen? =
 
 1. Access Dashboard screen in WordPress
 1. Click [Settings] - [Auto ThickBox Plus] in sidebar
 
-= About [Display Style] option =
+= How to localize the plugin into your language =
 
-When [Gallery Images] is selected, this plugin displays all images on a page as one gallery. You can switch the current image on ThickBox window by clicking "Prev/Next" links without closing ThickBox window.
+You can localize the plugin with [Poedit](http://www.poedit.net/) and "languages/auto-thickbox.pot" file. See [Localization](../other_notes/#Localization) for details.
 
-When [Single Image] is selected, this plugin displays images on a page one by one. You cannot switch the current image on ThickBox window. If you want to display some images as a gallery, you need to set `rel="gallery-id"` attribute to `<a>` tag manually as below.
+= Differences between Auto Thickbox and Auto ThickBox Plus =
+
+At first, Auto ThickBox Plus was created besed on [Auto Thickbox](http://wordpress.org/extend/plugins/auto-thickbox/) v.2.0.3 (Jul 20th, 2011). Then I added many functions and fixed many bugs, so now Auto ThickBox Plus has few code of Auto Thickbox. See also [Changelog](../changelog/) for more information.
+
+= How to use modified ThickBox from other plugins =
+
+Modified ThickBox in the plugin is also available in other plugins that use built-in ThickBox in WordPress, such as [NextGEN Gallery](http://wordpress.org/extend/plugins/nextgen-gallery/). Auto ThickBox Plus replaces built-in ThickBox with modified ThickBox dynamically.
+
+1. Install NextGEN Gallery, and activate it
+2. Access [Dashboard] - [Gallery] - [Options] - [Effects] tab
+3. Select [JavaScript Thumbnail effect] - [Thickbox] option
+4. Write [NextGEN Gallery tags](http://wordpress.org/extend/plugins/nextgen-gallery/faq/) (e.g. `[nggallery id=1]`)
+
+= About [General - Display Style] setting =
+
+When [Gallery Images] option is selected, the plugin displays all images on the page as one gallery. You can switch current image by clicking "Prev/Next" links without closing ThickBox window.
+
+When [Single Image] option is selected, the plugin displays each images on the page one by one. You cannot switch current image without closing ThickBox window. To display some images as a gallery, you need to set `rel="gallery-id"` attribute to `<a>` tag manually as below.
 
     <a href="image1.png" rel="gallery-id-foo">
         <img src="image1_s.png" alt="image1" />
@@ -225,69 +224,102 @@ When [Single Image] is selected, this plugin displays images on a page one by on
         <img src="image2_s.png" alt="image2" />
     </a>
 
-= About [Auto ThickBox] option =
+= About [General - Auto ThickBox] setting =
 
-When [Text links to images] is checked, this plugin applies ThickBox to text links to images automatically.
+When [Text links to images] option is checked, the plugin applies ThickBox to text links to images automatically.
 
-When [Text links to images] is not checked, this plugin does not apply ThickBox to text links. If you want to apply ThickBox to text links, you need to set `class="thickbox"` attribute to `<a>` tag manually as below.
+When [Text links to images] option is not checked, the plugin does not apply ThickBox to text links. To apply ThickBox to text links, you need to set `class="thickbox"` attribute to `<a>` tag manually as below.
 
     <a href="image.png" class="thickbox" title="foo">Text</a>
 
 = How to display only an image =
 
-When "View" options are as follows, only an image will be displayed without margin, padding, border, caption and button.
+When "View" setting is as follows, only an image will be displayed without margin, padding, border, caption and button.
 
 * Position - Caption - None
-* Margin - Image - 0 (px)
-* Border - Window, Image (Top left / Bottom right) - None
+* Margin - Image - 0 [px]
+* Border - Window / Image (Top left / Bottom right) - None
 
 = How to upload images via Media Uploader =
 
-1. Click [Select a File] button at "Image" options
+1. Click [Select a File] button at "Image" setting
 1. Drag an image file from your computer and drop to "Drop files here"
   * or Click [Select Files] button and choose an image file from your computer
 1. Click [Insert Image] button
 
-= Can I use built-in ThickBox resources instead? =
+= How to use built-in ThickBox instead =
 
-Yes, you can. Access 'Options' page, and check [ThickBox Resources - Use WordPress built-in thickbox.js/css] option.
+1. Access [Dashboard] - [Settings] - [Auto ThickBox Plus] screen
+1. Select [General] - [ThickBox Resources] - [Built-in ThickBox] option
 
-\* Note: some extra features will be disabled. For instance, most mouse/keyboard actions, animation effects, disabled Auto Resize, compatibility with cache plugins. And many improvements and bug fixes won't be applied.
+\* Note: Functions only in modified ThickBox will be disabled, such as enhanced Auto Resize, most mouse/keyboard actions, animation effects, high compatibility with themes and plugins. Moreover, many improvements and bug fixes won't be applied.
 
 = How to insert line feeds in title/caption =
 
-ThickBox Plus supports Multiline (line breaks) in title/caption. LF (`&#10&#xFEFF;;`/`&#x0A&#xFEFF;;`), CR (`&#13&#xFEFF;;`/`&#x0D&#xFEFF;;`) and CRLF (`&#13&#xFEFF;;&#10&#xFEFF;;`/`&#x0D&#xFEFF;;&#x0A&#xFEFF;;`) codes in caption/title are replaced with `<br />`.
+Modified ThickBox supports multiline (line breaks) in title/caption. The following codes in caption/title are replaced with `<br />`.
+
+* LE: `&#10&#xFEFF;;` (dec), `&#x0A&#xFEFF;;` (hex)
+* CR: `&#13&#xFEFF;;` (dec), `&#x0D&#xFEFF;;` (hex)
+* CRLF: `&#13&#xFEFF;;&#10&#xFEFF;;` (dec), `&#x0D&#xFEFF;;&#x0A&#xFEFF;;` (hex)
+
+<!-- code block after list -->
 
     <a href="image.png" title="line1&#10&#xFEFF;;line2&#10&#xFEFF;;line3">Text</a>
-
-= How to localize the plugin into your language =
-
-You can localize the plugin with [Poedit](http://www.poedit.net/). All you do is open "languages/auto-thickbox.pot" file and translate it. See [Localization in Other Notes](../other_notes/#Localization) for details.
 
 == Screenshots ==
 
 1. Pop-up image in "Single Image" style
-1. Pop-up image in "Gallery Images" style (with "Prev/Next" links)
-1. Auto ThickBox Plus Options page
+1. Pop-up image in "Gallery Images" style with "Prev/Next" links
+1. Auto ThickBox Plus Settings screen
 1. Customization example (pink background, transparent window, rounded corners, no borders, custom images, bold font, etc.)
+1. Mobile support for small-screen devices such as iPhone, Android, Symbian, BlackBerry and Windows Phone
+1. iFramed content in ThickBox. Moreover, inline and AJAX content are also available.
+1. [YouTube](http://www.youtube.com/) in ThickBox. More video services such as [Vimeo](http://vimeo.com/) and [DailyMotion](http://www.dailymotion.com/) are available.
+1. [Google Maps](http://maps.google.com/) in ThickBox. More Web applications such as [Google Docs](http://docs.google.com/) and [Evernote](http://evernote.com/) are available.
+1. Adobe PDF in ThickBox. More media files such as QuickTime Movie and MPEG are available.
+1. Adobe Flash in ThickBox. More applications such as Adobe Shockwave are available.
 
 == Changelog ==
 
 = Latest Version =
-* NEW: "Action - Mouse Click - Image - Open" option. You can click an image to open it in new tab/window.
-* NEW: "Action - Mouse Click - Image - Download (beta)" option. You can click an image to download it. This is experimental feature so I'm not sure whether it works on all server environments.
-* NEW: "Action - Mouse Click - Image - Expand / Shrink" option. You can expand an image to actual size then shrink it to fit window, and vice versa.
+
+= 1.9 =
+* NEW: Mobile beta support for small-screen devices such as iPhone, Android, Symbian, BlackBerry and Windows Phone. This is experimental support so it may not work on some version of mobile browsers.
+* NEW: Enhanced Auto Resize feature so that it works even when resizing browser window, even when showing iframe/ajax/inline content. Then, changed "Enabled" option to "Image/HTML" option at "General - Auto Resize" setting.
+* NEW: "General - Mobile Support (beta)" setting that has "No Window Margin / No ThickBox" option and "Width/Height" option
+* NEW: "View - Margin - Window (Image/HTML)" option
+* CHANGED: Removed CSS hacks for IE6 from thickbox.css, by replacing CSS Expression with JavaScript
+* CHANGED: ThickBox window is displayed in the center of browser when resizing browser after resizing or drag-moving itself
+* CHANGED: Modified Settings screen
+  * Added "Preview" links with ThickBox to "General - Display Style" setting
+  * Defaults to "JavaScript" option instead of "WordPress Filters" option in "General - Auto ThickBox" setting, because ThickBox cannot be applied to codes output by current theme or plugins without using WordPress filters
+  * Added "Image links to images" option to "General - Auto ThickBox" setting. It is useful when showing only image links with other than ThickBox.
+  * Changed "Use WordPress built-in thickbox.js/css" checkbox to "Modified/Built-in ThickBox" drop-down list in "General - ThickBox Resources"
+  * Replaced the word "Content" with "HTML"
+* FIXED: Invalid positioning on some mobile browsers such as older iOS (iPhone/iPad/iPod touch) and older Android, caused by not supporting `position:fixed` style.
+* FIXED: Title/caption bar misaligns by "Resize", "Expand/Shrink" and "Scale" when using "Effect - Title/Caption" option
+* FIXED: ThickBox window is not displayed in the center of browser due to hovering title when using "Effect - Title" option
+* FIXED: Even unused key events are consumed (ThickBox bug)
+* FIXED: Gallery images cannot be displayed in gallery style with [Cleaner Gallery](http://wordpress.org/extend/plugins/cleaner-gallery/)
+
+= 1.8 =
+* NEW: The following options in "Action - Mouse Click - Image"
+  * "Open" - You can click an image to open it in new tab/window.
+  * "Download (beta)" - You can click an image to download it. This is experimental feature so I'm not sure whether it works on all server environments.
+  * "Expand / Shrink" - You can expand an image to actual size then shrink it to fit window, and vice versa.
 * NEW: "Mouse Wheel - Image - Scroll" option and "Mouse Wheel - Background - Scroll/None" option
 * NEW: "View - Size - Window (Content) - Width/Height" option. You can change the default size of ThickBox window with non-image, and it can be overridden with `width`/`height` parameters in URL.
 * CHANGED: Modified "Mouse Wheel - Image - Scale" option. Uses calculated size instead of CSS3 transform so now it is not buggy in Drag & Drop action and it works at all browsers, and it scales only an image not ThickBox window.
-* CHANGED: Resizes ThickBox window with keeping aspect ratio when dragging corners. And resize handle is shown at the bottom right corner for usability.
+* CHANGED: Resizes ThickBox window with keeping aspect ratio when dragging corners. Then resize handle is shown at the bottom right corner for usability.
 * CHANGED: Uses spinner controls (input:number) instead of text fields (input:text) in options for entering numerical values. input:number is introduced in HTML5 so now it works only at Google Chrome, Opera and Safari.
 * FIXED: "Mouse Wheel" actions do not work in Firefox since some time
 * FIXED: "Mouse Wheel - Image - Scale" action do not work in "Single Image" style
-* UPDATED: Added **Italian (it_IT) translation (props Gianni Diurno)**
+* FIXED: First click on ThickBox window is not detected after drag & drop in Opera
+* FIXED: Still conflicted with themes that has `body { position: relative; }` style such as [iFeature](http://wordpress.org/extend/themes/ifeature) in IE8 or earlier
+* UPDATED: Added **Italian (it_IT) translation (props Gianni Diurno)** and **Swedish (sv_SE) translation (props Lukas Häusler)**
 
 = 1.7 =
-* NEW: "General - Auto ThickBox - WordPress Filters/JavaScript/Disabled" option. Auto ThickBox had worked only in content, excerpt, comments and widget tests due to WordPress filters (hooks). Now using JavaScript, the feature can work in whole page such as front page, header/footer, contents output by themes or other plugins. And you can also disable it if unnecessary.
+* NEW: "General - Auto ThickBox - WordPress Filters/JavaScript/Disabled" option. Auto ThickBox had worked only in content, excerpt, comments and widget tests due to WordPress filters (hooks). Now using JavaScript, the feature can work in whole page such as front page, header/footer, contents output by themes or other plugins. You can also disable it if unnecessary.
 * NEW: "Mouse Wheel - Image - Scale (beta)" option. This is experimental feature so it is a little bit buggy in Drag & Drop action and it works only at modern browsers that support CSS3 transform such as IE9.
 * NEW: Enabled "Screen Options" menu to show/hide meta boxes in Options page
 * CHANGED: Improvements on custom `<script>`/`<style>` tags
@@ -301,7 +333,7 @@ You can localize the plugin with [Poedit](http://www.poedit.net/). All you do is
 * FIXED: Removes whitespaces from both ends of gallery caption (regression in v1.5)
 * FIXED: Improved Right-to-Left (RTL) support in Options page when using Persian and so on
 * FIXED: Workaround for the issue that Media Uploader does not work in WordPress 3.3.3 or later
-* FIXED: 'First'/'Last' are not translated in ThickBox window because WordPress translations are split into locale.pot and admin-locale.pot since WordPress 3.4. So 'First'/'Last' had translated only in Options page.
+* FIXED: 'First'/'Last' are not translated in ThickBox window because WordPress translations are split into locale.pot and admin-locale.pot since WordPress 3.4. Thereby 'First'/'Last' had translated only in Options page.
 * UPDATED: Added **Persian/Farsi (fa_IR) translation (props Mohammadi)** and **Spanish (es_ES) translation (props Juan Antonio Peón)**, and updated French translation (props JB Prévots) and Japanese translation
 
 = 1.6 =
@@ -450,7 +482,7 @@ You can localize the plugin with [Poedit](http://www.poedit.net/). All you do is
 * NEW: **"View" options** in Options page
   * Font Family & Weight, Text Color, Background Color, Border, Border Radius, Opacity, Box Shadow and Text Shadow
 * NEW: "Reset" button in Options page
-* NEW: Added "Support"/"Donate" links to Plugins page
+* NEW: Added "Support" and "Donate" links to Plugins page
 * CHANGED: Switches padding-bottom of ThickBox window depending on Single/Gallery style
 * FIXED: Auto Thickbox corrupts links with custom data-* attributes (Auto Thickbox bug)
 * FIXED: Image is not displayed in the exact center of ThickBox window (ThickBox bug)
@@ -458,7 +490,7 @@ You can localize the plugin with [Poedit](http://www.poedit.net/). All you do is
 * UPDATED: readme.txt (Usage, Installation, Screenshots, Customization, etc.)
 
 = 0.5 =
-* CHANGED: Improved URL string generated by "Full iFrame support" in Auto Thickbox plugin
+* CHANGED: Improved URL string generated by "Full iFrame support" in Auto Thickbox
 * FIXED: Supports **AJAX content**. Internal files are displayed on the page without iframe. (Auto Thickbox & ThickBox bug)
 * FIXED: Supports **Twenty Eleven** theme (ThickBox bug)
 
@@ -643,18 +675,12 @@ You can localize the plugin with [Poedit](http://www.poedit.net/). Here is how t
 
 I would be grateful if you would [send me](http://attosoft.info/en/contact/) any translation files. Here are the available translations included in the latest plugin.
 
-* Dutch (nl_NL) translation by [Michel Bats](http://www.batssoft.nl/)
-* French (fr_FR) translation by [Jean-Bastien Prévots](http://www.jbprevots.fr/)
-* Japanese (ja) translation by [attosoft](http://attosoft.info/)
+* Dutch (nl_NL) by [Michel Bats](http://www.batssoft.nl/)
+* French (fr_FR) by [Jean-Bastien Prévots](http://www.jbprevots.fr/)
+* Italian (it_IT) by [Gianni Diurno](http://gidibao.net/)
+* Japanese (ja) by [attosoft](http://attosoft.info/)
+* Persian/Farsi (fa_IR) by [Ali Mohammadi](http://www.NewModel.ir/)
+* Spanish (es_ES) by [Juan Antonio Peón](http://www.aprendeausartumovil.com/)
+* Swedish (sv_SE) by [Lukas Häusler](http://lukashausler.com/)
 
 If you have any questions, feel free to [contact me](http://attosoft.info/en/contact/).
-
-== Error Console in Browsers ==
-
-* **Internet Explorer**: Double-click the warning icon in status bar or [Tools] - [Developer Tools] (F12)
-* **Mozilla Firefox**: [Firefox/Tools] - [Web Developer] - [Error Console] (Ctrl+Shift+J)
-* **Google Chrome**: [Tools] - [JavaScript console] (Ctrl+Shift+J)
-* **Opera**: [Opera] - [Page] - [Developer Tools] - [Error Console] (Ctrl+Shift+O)
-* **Safari (Mac)**: [Develop] - [Show Error Console] (Option-Command-C)
-  * **Safari (Windows)**: Page Menu Button - [Developer] - [Show Error Console] (Ctrl+Alt+C)
-  * To enable the developer tools, click Advanced in Safari preferences and check "Show Develop menu in menu bar"

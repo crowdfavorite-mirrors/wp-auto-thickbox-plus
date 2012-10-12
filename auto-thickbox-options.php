@@ -10,40 +10,40 @@ class auto_thickbox_options {
 
 	// Auto ThickBox Plus Options
 	function register_options_page() {
-		add_options_page($this->texts['options'], ATBP_NAME, 'manage_options', ATBP_SLUG, array(&$this, 'options_page'));
+		add_options_page('Auto ThickBox Plus ' . $this->util->__('Settings'), 'Auto ThickBox Plus', 'manage_options', 'auto-thickbox-plus', array(&$this, 'options_page'));
 		add_meta_box( 'general-box', $this->util->__('General'), array(&$this, 'general_metabox'), $this->settings_page_type, 'normal' );
-		add_meta_box( 'action-box', $this->util->_s('Action', 'Actions'), array(&$this, 'action_metabox'), $this->settings_page_type, 'normal' );
-		add_meta_box( 'view-box', ucfirst($this->util->_s('View', 'view')), array(&$this, 'view_metabox'), $this->settings_page_type, 'normal' );
+		add_meta_box( 'action-box', $this->util->__('Action', 'Actions'), array(&$this, 'action_metabox'), $this->settings_page_type, 'normal' );
+		add_meta_box( 'view-box', ucfirst($this->util->__('View', 'view')), array(&$this, 'view_metabox'), $this->settings_page_type, 'normal' );
 		add_meta_box( 'text-box', $this->util->__('Text'), array(&$this, 'text_metabox'), $this->settings_page_type, 'normal' );
 		add_meta_box( 'image-box', $this->texts['image'], array(&$this, 'image_metabox'), $this->settings_page_type, 'normal' );
 		add_meta_box( 'effect-box', $this->util->__('Effect') . ' (' . $this->util->__('beta') . ')', array(&$this, 'effect_metabox'), $this->settings_page_type, 'normal' );
 		add_meta_box( 'about-box', $this->util->__('About'), array(&$this, 'about_metabox'), $this->settings_page_type, 'normal' );
 		if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'post_id=' . $this->options['post_id']) !== false) {
 			add_filter('gettext', array(&$this, 'replace_insert_button'), 20, 3);
-			register_post_type(ATBP_SLUG, array('label' => ATBP_NAME));
+			register_post_type('auto-thickbox-plus', array('label' => 'Auto ThickBox Plus'));
 		}
 	}
 
 	function replace_insert_button($translated_text, $text, $domain) {
-		return $text == 'Insert into Post' ? $this->util->_s('Insert Image', 'Insert an Image', 'Insert') : $translated_text;
+		return $text == 'Insert into Post' ? $this->util->__('Insert Image', 'Insert an Image', 'Insert') : $translated_text;
 	}
 
 	function register_scripts() {
 		$this->has_slider = function_exists('wp_script_is') && wp_script_is('jquery-ui-slider', 'registered');
-		$deps = array('postbox', 'farbtastic', 'media-upload');
+		$deps = array('postbox', 'farbtastic', 'thickbox', 'media-upload');
 		if ($this->has_slider) $deps[] = 'jquery-ui-slider';
-		wp_enqueue_script('auto-thickbox', $this->util->plugins_url('auto-thickbox.js'), $deps, ATBP_VER, true);
+		wp_enqueue_script('auto-thickbox', $this->util->plugins_url('auto-thickbox.js'), $deps, AUTO_THICKBOX_PLUS_VER, true);
 	}
 
 	function register_styles() {
-		wp_enqueue_style('auto-thickbox', $this->util->plugins_url('auto-thickbox.css'), array('farbtastic', 'thickbox'), ATBP_VER);
+		wp_enqueue_style('auto-thickbox', $this->util->plugins_url('auto-thickbox.css'), array('farbtastic', 'thickbox'), AUTO_THICKBOX_PLUS_VER);
 	}
 
 	function options_page() {
 ?>
 <div class="wrap">
 	<?php screen_icon(); ?>
-	<h2><?php echo $this->texts['options']; ?></h2>
+	<h2>Auto ThickBox Plus <?php $this->util->_e('Settings'); ?></h2>
 	<form method="post" action="options.php" name="form" novalidate>
 	<?php settings_fields( $this->option_group ); ?>
 		<div id="poststuff" class="metabox-holder">
@@ -63,16 +63,18 @@ class auto_thickbox_options {
 	}
 
 	function general_metabox() {
-		$builtin_res_checked = $this->options['builtin_res'] == 'on';
+		$builtin_thickbox = $this->options['thickbox_type'] == 'built-in';
 ?>
 <table class="form-table">
 	<tr>
 		<th scope="row"><?php $this->util->_e('Display Style'); ?></th>
 		<td>
 			<label><input type="radio" name="auto-thickbox-plus[thickbox_style]" value="single"<?php $this->util->checked($this->options['thickbox_style'], 'single'); ?> />
-			<?php $this->util->_e('Single Image'); ?> (<code>&lt;a href="image">&lt;img />&lt;/a></code>)</label><br />
-			<label><input type="radio" name="auto-thickbox-plus[thickbox_style]" value="gallery"<?php $this->util->checked($this->options['thickbox_style'], 'gallery'); ?> />
-			<?php $this->util->_e('Gallery Images'); ?> (<code>&lt;a href="image" rel="gallery-id">&lt;img />&lt;/a></code>)</label>
+			<?php $this->util->_e('Single Image'); ?></label>
+			(<a href="<?php echo $this->util->plugins_url('screenshot-1.jpg'); ?>" class="thickbox-image" title="<?php $this->util->_e('Single Image'); ?>"><?php $this->util->_e('Preview'); ?></a>)
+			<label class="boundary"><input type="radio" name="auto-thickbox-plus[thickbox_style]" value="gallery"<?php $this->util->checked($this->options['thickbox_style'], 'gallery'); ?> />
+			<?php $this->util->_e('Gallery Images'); ?></label>
+			(<a href="<?php echo $this->util->plugins_url('screenshot-2.jpg'); ?>" class="thickbox-image" title="<?php $this->util->_e('Gallery Images'); ?>" rel="gallery"><?php $this->util->_e('Preview'); ?></a>)
 		</td>
 	</tr>
 	<tr>
@@ -96,8 +98,10 @@ class auto_thickbox_options {
 	<tr>
 		<th scope="row"></th>
 		<td>
+			<label><input type="checkbox" name="auto-thickbox-plus[thickbox_img]"<?php $this->util->checked($this->options['thickbox_img'], 'on'); ?> />
+			<?php $this->util->_e('Image links to images'); ?> (<code>&lt;a href="image">&lt;img src="thumbnail" />&lt;/a></code>)</label><br />
 			<label><input type="checkbox" name="auto-thickbox-plus[thickbox_text]"<?php $this->util->checked($this->options['thickbox_text'], 'on'); ?> />
-			<?php $this->util->_e('Text links to images'); ?> (<code>&lt;a href="image">text&lt;/a></code>)</label><br />
+			<?php $this->util->_e('Text links to images'); ?> (<code>&lt;a href="image">Text&lt;/a></code>)</label><br />
 			<label><input type="checkbox" name="auto-thickbox-plus[thickbox_target]"<?php $this->util->checked($this->options['thickbox_target'], 'on'); ?> />
 			<?php $this->util->_e('Links with target attribute'); ?> (<code>&lt;a target="_blank"></code>)</label>
 		</td>
@@ -112,24 +116,46 @@ class auto_thickbox_options {
 	<tr>
 		<th scope="row"><?php $this->util->_e('Auto Resize'); ?></th>
 		<td>
-			<label><input type="checkbox" name="auto-thickbox-plus[auto_resize]"<?php $this->util->checked($this->options['auto_resize'], 'on'); ?> />
-			<?php $this->util->_e('Enabled'); ?></label>
+			<label class="item"><input type="checkbox" name="auto-thickbox-plus[auto_resize_img]"<?php $this->util->checked($this->options['auto_resize_img'], 'on'); ?> />
+			<?php echo $this->texts['image']; ?></label>
+			<label class="item"><input type="checkbox" name="auto-thickbox-plus[auto_resize_html]"<?php $this->util->checked($this->options['auto_resize_html'], 'on'); ?> />
+			HTML</label>
 		</td>
 	</tr>
 	<tr>
 		<th scope="row"><?php $this->util->_e('ThickBox Resources'); ?></th>
 		<td>
-			<label class="item"><input type="radio" name="auto-thickbox-plus[script_place]" value="header"<?php $this->util->checked($this->options['script_place'], 'header'); $this->util->disabled($builtin_res_checked); ?> />
-			<?php $this->util->_e('Header'); ?></label>
-			<label class="item"><input type="radio" name="auto-thickbox-plus[script_place]" value="footer"<?php $this->util->checked($this->options['script_place'], 'footer'); $this->util->disabled($builtin_res_checked); ?> />
-			<?php $this->util->_e('Footer'); ?></label>
+			<select name="auto-thickbox-plus[thickbox_type]" onchange="disablePlaceOption(this)">
+				<option value="modified"<?php selected(!$builtin_thickbox); ?>><?php $this->util->_e('Modified ThickBox'); ?></option>
+				<option value="built-in"<?php selected($builtin_thickbox); ?>><?php $this->util->_e('Built-in ThickBox'); ?></option>
+			</select>
 		</td>
 	</tr>
 	<tr>
 		<th scope="row"></th>
 		<td>
-			<label><input type="checkbox" name="auto-thickbox-plus[builtin_res]"<?php $this->util->checked($builtin_res_checked); ?> onclick="disablePlaceOption(this)" />
-			<?php $this->util->_e('Use WordPress built-in thickbox.js/css (some extra features will be disabled)'); ?></label>
+			<label class="item"><input type="radio" name="auto-thickbox-plus[script_place]" value="header"<?php $this->util->checked($this->options['script_place'], 'header'); $this->util->disabled($builtin_thickbox); ?> />
+			<?php $this->util->_e('Header'); ?></label>
+			<label class="item"><input type="radio" name="auto-thickbox-plus[script_place]" value="footer"<?php $this->util->checked($this->options['script_place'], 'footer'); $this->util->disabled($builtin_thickbox); ?> />
+			<?php $this->util->_e('Footer'); ?></label>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row"><?php $this->util->_e('Mobile Support'); ?> (<?php $this->util->_e('beta'); ?>)</th>
+		<td>
+			<label class="item"><input type="radio" name="auto-thickbox-plus[mobile_support]" value="no_margin"<?php $this->util->checked($this->options['mobile_support'], 'no_margin'); ?> />
+			<?php $this->util->_e('No Window Margin'); ?></label>
+			<label class="item"><input type="radio" name="auto-thickbox-plus[mobile_support]" value="no_thickbox"<?php $this->util->checked($this->options['mobile_support'], 'no_thickbox'); ?> />
+			<?php $this->util->_e('No ThickBox'); ?></label>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row"></th>
+		<td>
+			<label class="item"><?php $this->util->_e('Width'); ?>
+			<input type="number" min="0" step="10" name="auto-thickbox-plus[small_width]" value="<?php echo $this->options['small_width']; ?>" class="small-text" /> px</label>
+			<label class="item boundary"><?php $this->util->_e('Height'); ?>
+			<input type="number" min="0" step="10" name="auto-thickbox-plus[small_height]" value="<?php echo $this->options['small_height']; ?>" class="small-text" /> px</label>
 		</td>
 	</tr>
 </table>
@@ -233,16 +259,16 @@ class auto_thickbox_options {
 	</tr>
 	<tr>
 		<th scope="row"></th>
-		<th scope="row"><?php $this->util->_e('Window'); ?> (<?php $this->util->_e('Content'); ?>)</th>
+		<th scope="row"><?php $this->util->_e('Window'); ?> (HTML)</th>
 		<td>
-			<label class="item"><input type="checkbox" name="auto-thickbox-plus[drag_content_move]"<?php $this->util->checked($this->options['drag_content_move'], 'on'); ?> />
+			<label class="item"><input type="checkbox" name="auto-thickbox-plus[drag_html_move]"<?php $this->util->checked($this->options['drag_html_move'], 'on'); ?> />
 			<?php $this->util->_e('Move'); ?></label>
-			<label class="item"><input type="checkbox" name="auto-thickbox-plus[drag_content_resize]"<?php $this->util->checked($this->options['drag_content_resize'], 'on'); ?> />
+			<label class="item"><input type="checkbox" name="auto-thickbox-plus[drag_html_resize]"<?php $this->util->checked($this->options['drag_html_resize'], 'on'); ?> />
 			<?php $this->util->_e('Resize'); ?></label>
 		</td>
 	</tr>
 	<tr>
-		<th scope="row"><?php $this->util->_es('Keyboard Shortcuts', 'Keyboard shortcuts'); ?></th>
+		<th scope="row"><?php $this->util->_e('Keyboard Shortcuts', 'Keyboard shortcuts'); ?></th>
 		<th scope="row"><?php echo $this->texts['close']; ?></th>
 		<td>
 			<label class="item"><input type="checkbox" name="auto-thickbox-plus[key_close_esc]"<?php $this->util->checked($this->options['key_close_esc'], 'on'); ?> />
@@ -297,7 +323,7 @@ class auto_thickbox_options {
 		$bgcolor_title_trans = $this->options['bgcolor_title'] == 'transparent';
 		$bgcolor_cap_trans = $this->options['bgcolor_cap'] == 'transparent';
 		$bgcolor_img_trans = $this->options['bgcolor_img'] == 'transparent';
-		$bgcolor_content_trans = $this->options['bgcolor_content'] == 'transparent';
+		$bgcolor_html_trans = $this->options['bgcolor_html'] == 'transparent';
 		$bgcolor_bg_trans = $this->options['bgcolor_bg'] == 'transparent';
 		$border_win_none = $this->options['border_win'] == 'none';
 		$border_img_tl_none = $this->options['border_img_tl'] == 'none';
@@ -306,7 +332,7 @@ class auto_thickbox_options {
 		$box_shadow_win_none = $this->options['box_shadow_win'] == 'none';
 		$txt_shadow_title_none = $this->options['txt_shadow_title'] == 'none';
 		$txt_shadow_cap_none = $this->options['txt_shadow_cap'] == 'none';
-		$text_sel_color = $this->util->_s('Select a Color', 'Select a color');
+		$text_sel_color = $this->util->__('Select a Color', 'Select a color');
 ?>
 <table class="form-table">
 	<tr>
@@ -335,7 +361,7 @@ class auto_thickbox_options {
 	</tr>
 	<tr>
 		<th scope="row"><?php $this->util->_e('Size'); ?></th>
-		<th scope="row"><?php $this->util->_e('Window'); ?> (<?php $this->util->_e('Content'); ?>)</th>
+		<th scope="row"><?php $this->util->_e('Window'); ?> (HTML)</th>
 		<td>
 			<label class="item"><?php $this->util->_e('Width'); ?>
 			<input type="number" min="0" step="10" name="auto-thickbox-plus[win_width]" value="<?php echo $this->options['win_width']; ?>" class="small-text" /> px</label>
@@ -354,7 +380,7 @@ class auto_thickbox_options {
 		</td>
 	</tr>
 	<tr>
-		<th scope="row"><a href="<?php $this->util->_e('https://developer.mozilla.org/en/CSS/font-family'); ?>" target="_blank"><?php echo ucwords($this->util->_s('Font Family', 'Font family')); ?></a></th>
+		<th scope="row"><a href="<?php $this->util->_e('https://developer.mozilla.org/en/CSS/font-family'); ?>" target="_blank"><?php echo ucwords($this->util->__('Font Family', 'Font family')); ?></a></th>
 		<th scope="row"><?php $this->util->_e('Title'); ?></th>
 		<td>
 			<input type="text" name="auto-thickbox-plus[font_title]" value="<?php echo $this->util->esc_attr($this->options['font_title']); ?>" style="width:70%" />
@@ -372,7 +398,7 @@ class auto_thickbox_options {
 		</td>
 	</tr>
 	<tr>
-		<th scope="row"><a href="<?php $this->util->_e('https://developer.mozilla.org/en/CSS/font-size'); ?>" target="_blank"><?php echo ucwords($this->util->_s('Font Size', 'Font size')); ?></a></th>
+		<th scope="row"><a href="<?php $this->util->_e('https://developer.mozilla.org/en/CSS/font-size'); ?>" target="_blank"><?php echo ucwords($this->util->__('Font Size', 'Font size')); ?></a></th>
 		<th scope="row"><?php $this->util->_e('Title'); ?></th>
 		<td>
 			<input type="number" min="0" name="auto-thickbox-plus[font_size_title]" value="<?php echo $this->options['font_size_title']; ?>" class="small-text" /> px
@@ -460,12 +486,12 @@ class auto_thickbox_options {
 	</tr>
 	<tr>
 		<th scope="row"></th>
-		<th scope="row"><?php $this->util->_e('Window'); ?> (<?php $this->util->_e('Content'); ?>)</th>
+		<th scope="row"><?php $this->util->_e('Window'); ?> (HTML)</th>
 		<td>
-			<input type="text" class="colortext" name="auto-thickbox-plus[bgcolor_content]" value="<?php echo $this->options['bgcolor_content']; ?>"<?php $this->util->disabled($bgcolor_content_trans); ?> />
+			<input type="text" class="colortext" name="auto-thickbox-plus[bgcolor_html]" value="<?php echo $this->options['bgcolor_html']; ?>"<?php $this->util->disabled($bgcolor_html_trans); ?> />
 			<a href="#" class="pickcolor colorpreview hide-if-no-js"></a>
 			<input type="button" class="pickcolor button hide-if-no-js" value="<?php echo $text_sel_color; ?>" />
-			<label><input type="checkbox" name="auto-thickbox-plus[bgcolor_content]" value="transparent"<?php $this->util->checked($bgcolor_content_trans); ?> onclick="disableOption(this)" />
+			<label><input type="checkbox" name="auto-thickbox-plus[bgcolor_html]" value="transparent"<?php $this->util->checked($bgcolor_html_trans); ?> onclick="disableOption(this)" />
 			<?php $this->util->_e('Transparent'); ?></label>
 			<br /><div class="colorpicker"></div>
 		</td>
@@ -484,6 +510,20 @@ class auto_thickbox_options {
 	</tr>
 	<tr>
 		<th scope="row"><a href="<?php $this->util->_e('https://developer.mozilla.org/en/CSS/margin'); ?>" target="_blank"><?php $this->util->_e('Margin'); ?></a></th>
+		<th scope="row"><?php $this->util->_e('Window'); ?> (<?php echo $this->texts['image']; ?>)</th>
+		<td>
+			<input type="number" min="0" name="auto-thickbox-plus[margin_win_img]" value="<?php echo $this->options['margin_win_img']; ?>" class="small-text" /> px
+		</td>
+	</tr>
+	<tr>
+		<th scope="row"></th>
+		<th scope="row"><?php $this->util->_e('Window'); ?> (HTML)</th>
+		<td>
+			<input type="number" min="0" name="auto-thickbox-plus[margin_win_html]" value="<?php echo $this->options['margin_win_html']; ?>" class="small-text" /> px
+		</td>
+	</tr>
+	<tr>
+		<th scope="row"></th>
 		<th scope="row"><?php echo $this->texts['image']; ?></th>
 		<td>
 			<input type="number" min="0" name="auto-thickbox-plus[margin_img]" value="<?php echo $this->options['margin_img']; ?>" class="small-text" /> px
@@ -662,7 +702,7 @@ class auto_thickbox_options {
 	}
 
 	function sortable_items($refs) {
-		$text_link = ucfirst($this->util->_s('Link', 'Links'));
+		$text_link = ucfirst($this->util->__('Link', 'Links'));
 		foreach (explode(',', $refs) as $ref) {
 			switch (trim($ref, "'")) {
 				case "link-title": echo "<li class='ui-state-default' id='link-title'>{$text_link} - " . $this->util->__('Title') . " (<code>a@title</code>)</li>"; break;
@@ -692,7 +732,7 @@ class auto_thickbox_options {
 		$img_close_btn = !$img_close_btn_none ? $this->options['img_close_btn'] : $this->options_def['img_close_btn'];
 		$img_load_none = $this->options['img_load'] == 'none';
 		$img_load = !$img_load_none ? $this->options['img_load'] : $this->options_def['img_load'];
-		$text_sel_file = $this->util->_s('Select a File', 'Select File');
+		$text_sel_file = $this->util->__('Select a File', 'Select File');
 		echo "<script type='text/javascript'>/* <![CDATA[ */var post_id = {$this->options['post_id']};/* ]]> */</script>\n";
 ?>
 <table class="form-table">
@@ -751,7 +791,7 @@ class auto_thickbox_options {
 		</td>
 	</tr>
 	<tr>
-		<th scope="row"><?php $this->util->_es('Loading&#8230;', 'Loading...'); ?></th>
+		<th scope="row"><?php $this->util->_e('Loading&#8230;', 'Loading...'); ?></th>
 		<td>
 			<input type="text" name="auto-thickbox-plus[img_load]" value="<?php echo $img_load; ?>" style="width:70%"<?php $this->util->disabled($img_load_none); ?> />
 			<input type="button" class="media-uploader button" value="<?php echo $text_sel_file; ?>" />
@@ -864,11 +904,11 @@ class auto_thickbox_options {
 	function about_metabox() {
 ?>
 <ul class="about">
-	<li class="wp"><a href="http://attosoft.info/en/blog/auto-thickbox-plus/" target="_blank"><?php $this->util->_es('Visit plugin site', 'Visit plugin homepage'); ?></a></li>
+	<li class="wp"><a href="<?php $this->util->_e('http://attosoft.info/en/'); ?>blog/auto-thickbox-plus/" target="_blank"><?php $this->util->_e('Visit plugin site', 'Visit plugin homepage'); ?></a></li>
 	<li class="star"><a href="http://wordpress.org/extend/plugins/auto-thickbox-plus/" target="_blank"><?php $this->util->_e('Put rating stars or vote compatibility (works/broken)'); ?></a></li>
 	<li class="forum"><a href="http://wordpress.org/support/plugin/auto-thickbox-plus" target="_blank"><?php $this->util->_e('View support forum or post a new topic'); ?></a></li>
 	<li class="l10n"><a href="http://wordpress.org/extend/plugins/auto-thickbox-plus/other_notes/#Localization" target="_blank"><?php $this->util->_e('Translate the plugin into your language'); ?></a></li>
-	<li class="donate"><a href="<?php $this->util->_e('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=D2DLJNSUFBU4U'); ?>" target="_blank"><?php $this->util->_e('Donate to support plugin development'); ?></a></li>
+	<li class="donate"><a href="<?php $this->util->_e('http://attosoft.info/en/'); ?>donate/" target="_blank"><?php $this->util->_e('Donate to support plugin development'); ?></a></li>
 	<li class="contact"><a href="<?php $this->util->_e('http://attosoft.info/en/'); ?>contact/" target="_blank"><?php $this->util->_e('Contact me if you have any feedback'); ?></a></li>
 </ul>
 <?php
@@ -898,10 +938,10 @@ class auto_thickbox_options {
 	}
 
 	function register_options() {
-		register_setting( $this->option_group, ATBP_SLUG, array(&$this, 'options_callback') );
+		register_setting( $this->option_group, 'auto-thickbox-plus', array(&$this, 'options_callback') );
 	}
 
-	var $checkboxes_on = array('wp_gallery', 'thickbox_text', 'auto_resize',
+	var $checkboxes_on = array('wp_gallery', 'thickbox_img', 'thickbox_text', 'auto_resize_img',
 		'key_close_esc', 'key_close_enter',
 		'key_prev_angle', 'key_prev_left',
 		'key_next_angle', 'key_next_right',
